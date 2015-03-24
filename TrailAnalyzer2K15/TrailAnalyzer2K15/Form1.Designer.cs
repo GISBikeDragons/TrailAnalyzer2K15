@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBikeAnalyzer2K15));
             this.menLayoutMenuStrip = new DotSpatial.Controls.LayoutMenuStrip();
             this.layersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,6 +50,10 @@
             this.tabGraph = new System.Windows.Forms.TabPage();
             this.tabTables = new System.Windows.Forms.TabPage();
             this.zedGraph = new ZedGraph.ZedGraphControl();
+            this.appManager1 = new DotSpatial.Controls.AppManager();
+            this.spatialDockManager1 = new DotSpatial.Controls.SpatialDockManager();
+            this.spatialHeaderControl1 = new DotSpatial.Controls.SpatialHeaderControl();
+            this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
             this.menLayoutMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sptInterface_Map)).BeginInit();
             this.sptInterface_Map.Panel1.SuspendLayout();
@@ -61,6 +66,9 @@
             this.tabMain.SuspendLayout();
             this.tabMap.SuspendLayout();
             this.tabGraph.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spatialDockManager1)).BeginInit();
+            this.spatialDockManager1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // menLayoutMenuStrip
@@ -313,12 +321,51 @@
             this.zedGraph.Size = new System.Drawing.Size(749, 552);
             this.zedGraph.TabIndex = 0;
             // 
+            // appManager1
+            // 
+            this.appManager1.Directories = ((System.Collections.Generic.List<string>)(resources.GetObject("appManager1.Directories")));
+            this.appManager1.DockManager = this.spatialDockManager1;
+            this.appManager1.HeaderControl = this.spatialHeaderControl1;
+            this.appManager1.Legend = this.lgdMapLegend;
+            this.appManager1.Map = this.mapMain;
+            this.appManager1.ProgressHandler = this.spatialStatusStrip1;
+            this.appManager1.ShowExtensionsDialogMode = DotSpatial.Controls.ShowExtensionsDialogMode.Default;
+            // 
+            // spatialDockManager1
+            // 
+            this.spatialDockManager1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spatialDockManager1.Location = new System.Drawing.Point(0, 24);
+            this.spatialDockManager1.Name = "spatialDockManager1";
+            this.spatialDockManager1.Size = new System.Drawing.Size(763, 584);
+            this.spatialDockManager1.SplitterDistance = 254;
+            this.spatialDockManager1.TabControl1 = null;
+            this.spatialDockManager1.TabControl2 = null;
+            this.spatialDockManager1.TabIndex = 3;
+            // 
+            // spatialHeaderControl1
+            // 
+            this.spatialHeaderControl1.ApplicationManager = null;
+            this.spatialHeaderControl1.MenuStrip = null;
+            this.spatialHeaderControl1.ToolbarsContainer = null;
+            // 
+            // spatialStatusStrip1
+            // 
+            this.spatialStatusStrip1.Location = new System.Drawing.Point(0, 586);
+            this.spatialStatusStrip1.Name = "spatialStatusStrip1";
+            this.spatialStatusStrip1.ProgressBar = null;
+            this.spatialStatusStrip1.ProgressLabel = null;
+            this.spatialStatusStrip1.Size = new System.Drawing.Size(763, 22);
+            this.spatialStatusStrip1.TabIndex = 4;
+            this.spatialStatusStrip1.Text = "spatialStatusStrip1";
+            // 
             // frmBikeAnalyzer2K15
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(763, 608);
+            this.Controls.Add(this.spatialStatusStrip1);
             this.Controls.Add(this.tabMain);
+            this.Controls.Add(this.spatialDockManager1);
             this.Controls.Add(this.menLayoutMenuStrip);
             this.MainMenuStrip = this.menLayoutMenuStrip;
             this.Name = "frmBikeAnalyzer2K15";
@@ -336,6 +383,9 @@
             this.tabMain.ResumeLayout(false);
             this.tabMap.ResumeLayout(false);
             this.tabGraph.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spatialDockManager1)).EndInit();
+            this.spatialDockManager1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -364,6 +414,10 @@
         private System.Windows.Forms.TabPage tabGraph;
         private System.Windows.Forms.TabPage tabTables;
         private ZedGraph.ZedGraphControl zedGraph;
+        private DotSpatial.Controls.AppManager appManager1;
+        private DotSpatial.Controls.SpatialDockManager spatialDockManager1;
+        private DotSpatial.Controls.SpatialHeaderControl spatialHeaderControl1;
+        private DotSpatial.Controls.SpatialStatusStrip spatialStatusStrip1;
     }
 }
 

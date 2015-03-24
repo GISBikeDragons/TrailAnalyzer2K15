@@ -15,6 +15,7 @@ namespace TrailAnalyzer2K15
         public frmBikeAnalyzer2K15()
         {
             InitializeComponent();
+            appManager1.LoadExtensions();
         }
 
         //Button controls for interacting with the map
