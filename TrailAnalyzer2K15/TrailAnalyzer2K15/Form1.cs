@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DotSpatial.Controls;   //added for creating shapefiles with DotSpatial
+using DotSpatial.Data;       //added for creating shapefiles with DotSpatial
+using DotSpatial.Symbology;  //added for creating shapefiles with DotSpatial
+using DotSpatial.Topology;   //added for creating shapefiles with DotSpatial
 
 namespace TrailAnalyzer2K15
 {
@@ -56,6 +60,57 @@ namespace TrailAnalyzer2K15
              * use a draw function to draw the lines using list of coordinates
              * use double click or right click for user to be done (maybe both)
              */
-        }
+
+            //Declare the following class level variables
+            #region Polyline_Shapefile class level variables
+
+                MapLineLayer linelayer = default(MapLineLayer);
+                
+                //the line feature set
+                FeatureSet lineF = new FeatureSet(FeatureType.Line);
+
+                int lineID = 0;
+
+                //boolean variable for first time mouse click
+                bool firstClick = false;
+
+                //It controls the drawing the polyline after the polyline saved operation
+                bool linemouseClick = false;
+
+            #endregion
+
+            //Write the following code into CreatePolylineShapeFileToolStripMenuItem_Click event
+            private void CreatePolylineShapeFileToolStripMenuItem_Click(object sender, EventArgs e)
+                {
+                //change the mouse cursor
+                mapMain.Cursor = Cursors.Cross;
+
+                //set shape type
+                ShapeType = "line";
+
+                //set projection
+                LineF.Projection = mapMain.Projection;
+
+                //initialize the featureSet attribute table
+                DataColumn column = new DataColumn("LineID");
+
+                if (!LineF.DataTable.Columns.Contains("LineID");
+                {
+                    LineF.DataTable.Columns.Add(column);
+                }
+
+                //add the featureSet as map layer
+                lineLayer = (MapLineLayer)mapMain.Layers.Add(lineF);
+
+                //Set the symbolizer to the line feature
+                LineSymbolizer symbol = new LineSymbolizer(Color.Blue, 2);
+                lineLayer.symbology = symbol
+                lineLayer.LegendText = "line";
+
+                firstClick = true
+
+                linemouseClick = true
+
+                //COntinue code from "DotSpatial_Tutorial_4", a Word *.docx from online...
     }
 }
