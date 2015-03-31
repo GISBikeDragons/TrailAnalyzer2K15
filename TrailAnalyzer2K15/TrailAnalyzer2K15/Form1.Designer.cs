@@ -55,8 +55,11 @@
             this.spatialHeaderControl1 = new DotSpatial.Controls.SpatialHeaderControl();
             this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPageMap = new System.Windows.Forms.TabPage();
+            this.tabPageGraph = new System.Windows.Forms.TabPage();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
             this.menLayoutMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sptInterface_Map)).BeginInit();
             this.sptInterface_Map.Panel1.SuspendLayout();
@@ -72,8 +75,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.spatialDockManager1)).BeginInit();
             this.spatialDockManager1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).BeginInit();
+            this.spatialStatusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabPageMap.SuspendLayout();
+            this.tabPageGraph.SuspendLayout();
             this.SuspendLayout();
             // 
             // menLayoutMenuStrip
@@ -138,7 +143,7 @@
             // 
             this.sptInterface_Map.Panel2.Controls.Add(this.tabControl1);
             this.sptInterface_Map.Size = new System.Drawing.Size(741, 493);
-            this.sptInterface_Map.SplitterDistance = 246;
+            this.sptInterface_Map.SplitterDistance = 162;
             this.sptInterface_Map.TabIndex = 1;
             // 
             // sptButtons_Legend
@@ -158,7 +163,7 @@
             // sptButtons_Legend.Panel2
             // 
             this.sptButtons_Legend.Panel2.Controls.Add(this.lgdMapLegend);
-            this.sptButtons_Legend.Size = new System.Drawing.Size(246, 493);
+            this.sptButtons_Legend.Size = new System.Drawing.Size(162, 493);
             this.sptButtons_Legend.SplitterDistance = 235;
             this.sptButtons_Legend.TabIndex = 0;
             // 
@@ -184,7 +189,7 @@
             // lgdMapLegend
             // 
             this.lgdMapLegend.BackColor = System.Drawing.Color.White;
-            this.lgdMapLegend.ControlRectangle = new System.Drawing.Rectangle(0, 0, 246, 254);
+            this.lgdMapLegend.ControlRectangle = new System.Drawing.Rectangle(0, 0, 162, 254);
             this.lgdMapLegend.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lgdMapLegend.DocumentRectangle = new System.Drawing.Rectangle(0, 0, 187, 428);
             this.lgdMapLegend.HorizontalScrollEnabled = true;
@@ -197,14 +202,14 @@
             this.lgdMapLegend.ResetOnResize = false;
             this.lgdMapLegend.SelectionFontColor = System.Drawing.Color.Black;
             this.lgdMapLegend.SelectionHighlight = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(238)))), ((int)(((byte)(252)))));
-            this.lgdMapLegend.Size = new System.Drawing.Size(246, 254);
+            this.lgdMapLegend.Size = new System.Drawing.Size(162, 254);
             this.lgdMapLegend.TabIndex = 0;
             this.lgdMapLegend.Text = "Map Legend";
             this.lgdMapLegend.VerticalScrollEnabled = true;
             // 
             // btnSelect
             // 
-            this.btnSelect.Location = new System.Drawing.Point(0, 25);
+            this.btnSelect.Location = new System.Drawing.Point(0, 23);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(75, 23);
             this.btnSelect.TabIndex = 9;
@@ -214,7 +219,7 @@
             // 
             // btnPan
             // 
-            this.btnPan.Location = new System.Drawing.Point(4, 80);
+            this.btnPan.Location = new System.Drawing.Point(0, 69);
             this.btnPan.Name = "btnPan";
             this.btnPan.Size = new System.Drawing.Size(75, 23);
             this.btnPan.TabIndex = 8;
@@ -224,7 +229,7 @@
             // 
             // btnZoomOut
             // 
-            this.btnZoomOut.Location = new System.Drawing.Point(2, 52);
+            this.btnZoomOut.Location = new System.Drawing.Point(0, 46);
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(75, 23);
             this.btnZoomOut.TabIndex = 7;
@@ -253,7 +258,7 @@
             this.mapMain.FunctionMode = DotSpatial.Controls.FunctionMode.None;
             this.mapMain.IsBusy = false;
             this.mapMain.IsZoomedToMaxExtent = false;
-            this.mapMain.Legend = null;
+            this.mapMain.Legend = this.lgdMapLegend;
             this.mapMain.Location = new System.Drawing.Point(3, 3);
             this.mapMain.Name = "mapMain";
             this.mapMain.ProgressHandler = null;
@@ -261,7 +266,7 @@
             this.mapMain.ProjectionModeReproject = DotSpatial.Controls.ActionMode.Prompt;
             this.mapMain.RedrawLayersWhileResizing = false;
             this.mapMain.SelectionEnabled = true;
-            this.mapMain.Size = new System.Drawing.Size(477, 461);
+            this.mapMain.Size = new System.Drawing.Size(561, 461);
             this.mapMain.TabIndex = 10;
             // 
             // tabMain
@@ -347,10 +352,13 @@
             // 
             // spatialStatusStrip1
             // 
+            this.spatialStatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripProgressBar1,
+            this.toolStripStatusLabel1});
             this.spatialStatusStrip1.Location = new System.Drawing.Point(0, 527);
             this.spatialStatusStrip1.Name = "spatialStatusStrip1";
-            this.spatialStatusStrip1.ProgressBar = null;
-            this.spatialStatusStrip1.ProgressLabel = null;
+            this.spatialStatusStrip1.ProgressBar = this.toolStripProgressBar1;
+            this.spatialStatusStrip1.ProgressLabel = this.toolStripStatusLabel1;
             this.spatialStatusStrip1.Size = new System.Drawing.Size(755, 22);
             this.spatialStatusStrip1.TabIndex = 4;
             this.spatialStatusStrip1.Text = "spatialStatusStrip1";
@@ -358,39 +366,63 @@
             // tabControl1
             // 
             this.tabControl1.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPageMap);
+            this.tabControl1.Controls.Add(this.tabPageGraph);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(491, 493);
+            this.tabControl1.Size = new System.Drawing.Size(575, 493);
             this.tabControl1.TabIndex = 2;
             // 
-            // tabPage1
+            // tabPageMap
             // 
-            this.tabPage1.Controls.Add(this.btnSelect);
-            this.tabPage1.Controls.Add(this.btnPan);
-            this.tabPage1.Controls.Add(this.btnZoomOut);
-            this.tabPage1.Controls.Add(this.btnZoomIn);
-            this.tabPage1.Controls.Add(this.mapMain);
-            this.tabPage1.Location = new System.Drawing.Point(4, 4);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(483, 467);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPageMap.Controls.Add(this.btnSelect);
+            this.tabPageMap.Controls.Add(this.btnPan);
+            this.tabPageMap.Controls.Add(this.btnZoomOut);
+            this.tabPageMap.Controls.Add(this.btnZoomIn);
+            this.tabPageMap.Controls.Add(this.mapMain);
+            this.tabPageMap.Location = new System.Drawing.Point(4, 4);
+            this.tabPageMap.Name = "tabPageMap";
+            this.tabPageMap.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageMap.Size = new System.Drawing.Size(567, 467);
+            this.tabPageMap.TabIndex = 0;
+            this.tabPageMap.Text = "Map";
+            this.tabPageMap.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tabPageGraph
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 4);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(483, 467);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPageGraph.Controls.Add(this.zedGraphControl1);
+            this.tabPageGraph.Location = new System.Drawing.Point(4, 4);
+            this.tabPageGraph.Name = "tabPageGraph";
+            this.tabPageGraph.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageGraph.Size = new System.Drawing.Size(567, 467);
+            this.tabPageGraph.TabIndex = 1;
+            this.tabPageGraph.Text = "Graph";
+            this.tabPageGraph.UseVisualStyleBackColor = true;
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            this.toolStripProgressBar1.Visible = false;
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Visible = false;
+            // 
+            // zedGraphControl1
+            // 
+            this.zedGraphControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.zedGraphControl1.IsShowPointValues = false;
+            this.zedGraphControl1.Location = new System.Drawing.Point(3, 3);
+            this.zedGraphControl1.Name = "zedGraphControl1";
+            this.zedGraphControl1.PointValueFormat = "G";
+            this.zedGraphControl1.Size = new System.Drawing.Size(561, 461);
+            this.zedGraphControl1.TabIndex = 0;
             // 
             // frmBikeAnalyzer2K15
             // 
@@ -420,8 +452,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.spatialDockManager1)).EndInit();
             this.spatialDockManager1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).EndInit();
+            this.spatialStatusStrip1.ResumeLayout(false);
+            this.spatialStatusStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.tabPageMap.ResumeLayout(false);
+            this.tabPageGraph.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -455,8 +490,11 @@
         private DotSpatial.Controls.SpatialHeaderControl spatialHeaderControl1;
         private DotSpatial.Controls.SpatialStatusStrip spatialStatusStrip1;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPageMap;
+        private System.Windows.Forms.TabPage tabPageGraph;
+        private ZedGraph.ZedGraphControl zedGraphControl1;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 
