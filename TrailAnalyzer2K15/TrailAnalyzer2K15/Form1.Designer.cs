@@ -443,6 +443,7 @@
             this.MainMenuStrip = this.menLayoutMenuStrip;
             this.Name = "frmBikeAnalyzer2K15";
             this.Text = "Bike Analyzer 2K15";
+            this.Load += new System.EventHandler(this.frmBikeAnalyzer2K15_Load);
             this.menLayoutMenuStrip.ResumeLayout(false);
             this.menLayoutMenuStrip.PerformLayout();
             this.sptInterface_Map.Panel1.ResumeLayout(false);

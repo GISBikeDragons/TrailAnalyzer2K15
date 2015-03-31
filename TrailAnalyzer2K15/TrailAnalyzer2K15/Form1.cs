@@ -57,5 +57,10 @@ namespace TrailAnalyzer2K15
         {
             mapMain.FunctionMode = DotSpatial.Controls.FunctionMode.Select;
         }
+
+        private void frmBikeAnalyzer2K15_Load(object sender, EventArgs e)
+        {
+            mapMain.AddRasterLayer();
+        }
     }
 }
