@@ -39,16 +39,10 @@
             this.sptButtons_Legend = new System.Windows.Forms.SplitContainer();
             this.btnDrawTrail = new System.Windows.Forms.Button();
             this.btnAddLayer = new System.Windows.Forms.Button();
-            this.lgdMapLegend = new DotSpatial.Controls.Legend();
-            this.btnSelect = new System.Windows.Forms.Button();
             this.btnPan = new System.Windows.Forms.Button();
-            this.btnZoomOut = new System.Windows.Forms.Button();
-            this.btnZoomIn = new System.Windows.Forms.Button();
-            this.mapMain = new DotSpatial.Controls.Map();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabMap = new System.Windows.Forms.TabPage();
             this.tabGraph = new System.Windows.Forms.TabPage();
-            this.zedGraph = new ZedGraph.ZedGraphControl();
             this.tabTables = new System.Windows.Forms.TabPage();
             this.appManager1 = new DotSpatial.Controls.AppManager();
             this.spatialDockManager1 = new DotSpatial.Controls.SpatialDockManager();
@@ -59,7 +53,14 @@
             this.tabPageGraph = new System.Windows.Forms.TabPage();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnSelect = new System.Windows.Forms.Button();
+            this.btnZoomOut = new System.Windows.Forms.Button();
+            this.btnZoomIn = new System.Windows.Forms.Button();
+            this.lgdMapLegend = new DotSpatial.Controls.Legend();
+            this.mapMain = new DotSpatial.Controls.Map();
             this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
+            this.zedGraph = new ZedGraph.ZedGraphControl();
+            this.btnGraph = new System.Windows.Forms.Button();
             this.menLayoutMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sptInterface_Map)).BeginInit();
             this.sptInterface_Map.Panel1.SuspendLayout();
@@ -156,6 +157,7 @@
             // sptButtons_Legend.Panel1
             // 
             this.sptButtons_Legend.Panel1.BackColor = System.Drawing.Color.White;
+            this.sptButtons_Legend.Panel1.Controls.Add(this.btnGraph);
             this.sptButtons_Legend.Panel1.Controls.Add(this.btnDrawTrail);
             this.sptButtons_Legend.Panel1.Controls.Add(this.btnAddLayer);
             this.sptButtons_Legend.Panel1.Margin = new System.Windows.Forms.Padding(1);
@@ -186,88 +188,14 @@
             this.btnAddLayer.UseVisualStyleBackColor = true;
             this.btnAddLayer.Click += new System.EventHandler(this.btnAddLayer_Click);
             // 
-            // lgdMapLegend
-            // 
-            this.lgdMapLegend.BackColor = System.Drawing.Color.White;
-            this.lgdMapLegend.ControlRectangle = new System.Drawing.Rectangle(0, 0, 162, 254);
-            this.lgdMapLegend.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lgdMapLegend.DocumentRectangle = new System.Drawing.Rectangle(0, 0, 187, 428);
-            this.lgdMapLegend.HorizontalScrollEnabled = true;
-            this.lgdMapLegend.Indentation = 30;
-            this.lgdMapLegend.IsInitialized = false;
-            this.lgdMapLegend.Location = new System.Drawing.Point(0, 0);
-            this.lgdMapLegend.MinimumSize = new System.Drawing.Size(5, 5);
-            this.lgdMapLegend.Name = "lgdMapLegend";
-            this.lgdMapLegend.ProgressHandler = null;
-            this.lgdMapLegend.ResetOnResize = false;
-            this.lgdMapLegend.SelectionFontColor = System.Drawing.Color.Black;
-            this.lgdMapLegend.SelectionHighlight = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(238)))), ((int)(((byte)(252)))));
-            this.lgdMapLegend.Size = new System.Drawing.Size(162, 254);
-            this.lgdMapLegend.TabIndex = 0;
-            this.lgdMapLegend.Text = "Map Legend";
-            this.lgdMapLegend.VerticalScrollEnabled = true;
-            // 
-            // btnSelect
-            // 
-            this.btnSelect.Location = new System.Drawing.Point(0, 23);
-            this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(75, 23);
-            this.btnSelect.TabIndex = 9;
-            this.btnSelect.Text = "Select";
-            this.btnSelect.UseVisualStyleBackColor = true;
-            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
-            // 
             // btnPan
             // 
-            this.btnPan.Location = new System.Drawing.Point(0, 69);
+            this.btnPan.Location = new System.Drawing.Point(2, 98);
             this.btnPan.Name = "btnPan";
-            this.btnPan.Size = new System.Drawing.Size(75, 23);
+            this.btnPan.Size = new System.Drawing.Size(28, 28);
             this.btnPan.TabIndex = 8;
-            this.btnPan.Text = "Pan";
             this.btnPan.UseVisualStyleBackColor = true;
             this.btnPan.Click += new System.EventHandler(this.btnPan_Click);
-            // 
-            // btnZoomOut
-            // 
-            this.btnZoomOut.Location = new System.Drawing.Point(0, 46);
-            this.btnZoomOut.Name = "btnZoomOut";
-            this.btnZoomOut.Size = new System.Drawing.Size(75, 23);
-            this.btnZoomOut.TabIndex = 7;
-            this.btnZoomOut.Text = "Zoom Out";
-            this.btnZoomOut.UseVisualStyleBackColor = true;
-            this.btnZoomOut.Click += new System.EventHandler(this.btnZoomOut_Click);
-            // 
-            // btnZoomIn
-            // 
-            this.btnZoomIn.Location = new System.Drawing.Point(0, 0);
-            this.btnZoomIn.Name = "btnZoomIn";
-            this.btnZoomIn.Size = new System.Drawing.Size(75, 23);
-            this.btnZoomIn.TabIndex = 6;
-            this.btnZoomIn.Text = "Zoom In";
-            this.btnZoomIn.UseVisualStyleBackColor = true;
-            this.btnZoomIn.Click += new System.EventHandler(this.btnZoomIn_Click);
-            // 
-            // mapMain
-            // 
-            this.mapMain.AllowDrop = true;
-            this.mapMain.BackColor = System.Drawing.Color.White;
-            this.mapMain.CollectAfterDraw = false;
-            this.mapMain.CollisionDetection = false;
-            this.mapMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mapMain.ExtendBuffer = false;
-            this.mapMain.FunctionMode = DotSpatial.Controls.FunctionMode.None;
-            this.mapMain.IsBusy = false;
-            this.mapMain.IsZoomedToMaxExtent = false;
-            this.mapMain.Legend = this.lgdMapLegend;
-            this.mapMain.Location = new System.Drawing.Point(3, 3);
-            this.mapMain.Name = "mapMain";
-            this.mapMain.ProgressHandler = null;
-            this.mapMain.ProjectionModeDefine = DotSpatial.Controls.ActionMode.Prompt;
-            this.mapMain.ProjectionModeReproject = DotSpatial.Controls.ActionMode.Prompt;
-            this.mapMain.RedrawLayersWhileResizing = false;
-            this.mapMain.SelectionEnabled = true;
-            this.mapMain.Size = new System.Drawing.Size(561, 461);
-            this.mapMain.TabIndex = 10;
             // 
             // tabMain
             // 
@@ -303,16 +231,6 @@
             this.tabGraph.TabIndex = 1;
             this.tabGraph.Text = "Graphs";
             this.tabGraph.UseVisualStyleBackColor = true;
-            // 
-            // zedGraph
-            // 
-            this.zedGraph.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.zedGraph.IsShowPointValues = false;
-            this.zedGraph.Location = new System.Drawing.Point(3, 3);
-            this.zedGraph.Name = "zedGraph";
-            this.zedGraph.PointValueFormat = "G";
-            this.zedGraph.Size = new System.Drawing.Size(741, 493);
-            this.zedGraph.TabIndex = 0;
             // 
             // tabTables
             // 
@@ -414,6 +332,76 @@
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Visible = false;
             // 
+            // btnSelect
+            // 
+            this.btnSelect.Location = new System.Drawing.Point(2, 66);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(28, 28);
+            this.btnSelect.TabIndex = 9;
+            this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
+            // btnZoomOut
+            // 
+            this.btnZoomOut.Location = new System.Drawing.Point(2, 34);
+            this.btnZoomOut.Name = "btnZoomOut";
+            this.btnZoomOut.Size = new System.Drawing.Size(28, 28);
+            this.btnZoomOut.TabIndex = 7;
+            this.btnZoomOut.UseVisualStyleBackColor = true;
+            this.btnZoomOut.Click += new System.EventHandler(this.btnZoomOut_Click);
+            // 
+            // btnZoomIn
+            // 
+            this.btnZoomIn.Location = new System.Drawing.Point(2, 2);
+            this.btnZoomIn.Name = "btnZoomIn";
+            this.btnZoomIn.Size = new System.Drawing.Size(28, 28);
+            this.btnZoomIn.TabIndex = 6;
+            this.btnZoomIn.UseVisualStyleBackColor = true;
+            this.btnZoomIn.Click += new System.EventHandler(this.btnZoomIn_Click);
+            // 
+            // lgdMapLegend
+            // 
+            this.lgdMapLegend.BackColor = System.Drawing.Color.White;
+            this.lgdMapLegend.ControlRectangle = new System.Drawing.Rectangle(0, 0, 162, 254);
+            this.lgdMapLegend.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lgdMapLegend.DocumentRectangle = new System.Drawing.Rectangle(0, 0, 187, 428);
+            this.lgdMapLegend.HorizontalScrollEnabled = true;
+            this.lgdMapLegend.Indentation = 30;
+            this.lgdMapLegend.IsInitialized = false;
+            this.lgdMapLegend.Location = new System.Drawing.Point(0, 0);
+            this.lgdMapLegend.MinimumSize = new System.Drawing.Size(5, 5);
+            this.lgdMapLegend.Name = "lgdMapLegend";
+            this.lgdMapLegend.ProgressHandler = null;
+            this.lgdMapLegend.ResetOnResize = false;
+            this.lgdMapLegend.SelectionFontColor = System.Drawing.Color.Black;
+            this.lgdMapLegend.SelectionHighlight = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(238)))), ((int)(((byte)(252)))));
+            this.lgdMapLegend.Size = new System.Drawing.Size(162, 254);
+            this.lgdMapLegend.TabIndex = 0;
+            this.lgdMapLegend.Text = "Map Legend";
+            this.lgdMapLegend.VerticalScrollEnabled = true;
+            // 
+            // mapMain
+            // 
+            this.mapMain.AllowDrop = true;
+            this.mapMain.BackColor = System.Drawing.Color.White;
+            this.mapMain.CollectAfterDraw = false;
+            this.mapMain.CollisionDetection = false;
+            this.mapMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mapMain.ExtendBuffer = false;
+            this.mapMain.FunctionMode = DotSpatial.Controls.FunctionMode.None;
+            this.mapMain.IsBusy = false;
+            this.mapMain.IsZoomedToMaxExtent = false;
+            this.mapMain.Legend = this.lgdMapLegend;
+            this.mapMain.Location = new System.Drawing.Point(3, 3);
+            this.mapMain.Name = "mapMain";
+            this.mapMain.ProgressHandler = null;
+            this.mapMain.ProjectionModeDefine = DotSpatial.Controls.ActionMode.Prompt;
+            this.mapMain.ProjectionModeReproject = DotSpatial.Controls.ActionMode.Prompt;
+            this.mapMain.RedrawLayersWhileResizing = false;
+            this.mapMain.SelectionEnabled = true;
+            this.mapMain.Size = new System.Drawing.Size(561, 461);
+            this.mapMain.TabIndex = 10;
+            // 
             // zedGraphControl1
             // 
             this.zedGraphControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -423,6 +411,25 @@
             this.zedGraphControl1.PointValueFormat = "G";
             this.zedGraphControl1.Size = new System.Drawing.Size(561, 461);
             this.zedGraphControl1.TabIndex = 0;
+            // 
+            // zedGraph
+            // 
+            this.zedGraph.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.zedGraph.IsShowPointValues = false;
+            this.zedGraph.Location = new System.Drawing.Point(3, 3);
+            this.zedGraph.Name = "zedGraph";
+            this.zedGraph.PointValueFormat = "G";
+            this.zedGraph.Size = new System.Drawing.Size(741, 493);
+            this.zedGraph.TabIndex = 0;
+            // 
+            // btnGraph
+            // 
+            this.btnGraph.Location = new System.Drawing.Point(5, 66);
+            this.btnGraph.Name = "btnGraph";
+            this.btnGraph.Size = new System.Drawing.Size(75, 23);
+            this.btnGraph.TabIndex = 2;
+            this.btnGraph.Text = "Graph Trail";
+            this.btnGraph.UseVisualStyleBackColor = true;
             // 
             // frmBikeAnalyzer2K15
             // 
@@ -495,6 +502,7 @@
         private ZedGraph.ZedGraphControl zedGraphControl1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Button btnGraph;
     }
 }
 
