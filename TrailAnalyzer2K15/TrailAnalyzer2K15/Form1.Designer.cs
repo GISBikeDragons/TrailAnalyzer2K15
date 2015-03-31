@@ -48,12 +48,15 @@
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabMap = new System.Windows.Forms.TabPage();
             this.tabGraph = new System.Windows.Forms.TabPage();
-            this.tabTables = new System.Windows.Forms.TabPage();
             this.zedGraph = new ZedGraph.ZedGraphControl();
+            this.tabTables = new System.Windows.Forms.TabPage();
             this.appManager1 = new DotSpatial.Controls.AppManager();
             this.spatialDockManager1 = new DotSpatial.Controls.SpatialDockManager();
             this.spatialHeaderControl1 = new DotSpatial.Controls.SpatialHeaderControl();
             this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.menLayoutMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sptInterface_Map)).BeginInit();
             this.sptInterface_Map.Panel1.SuspendLayout();
@@ -69,6 +72,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.spatialDockManager1)).BeginInit();
             this.spatialDockManager1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menLayoutMenuStrip
@@ -79,7 +84,7 @@
             this.menLayoutMenuStrip.LayoutControl = null;
             this.menLayoutMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.menLayoutMenuStrip.Name = "menLayoutMenuStrip";
-            this.menLayoutMenuStrip.Size = new System.Drawing.Size(763, 24);
+            this.menLayoutMenuStrip.Size = new System.Drawing.Size(755, 24);
             this.menLayoutMenuStrip.TabIndex = 0;
             this.menLayoutMenuStrip.Text = "layoutMenuStrip1";
             // 
@@ -131,13 +136,9 @@
             // 
             // sptInterface_Map.Panel2
             // 
-            this.sptInterface_Map.Panel2.Controls.Add(this.btnSelect);
-            this.sptInterface_Map.Panel2.Controls.Add(this.btnPan);
-            this.sptInterface_Map.Panel2.Controls.Add(this.btnZoomOut);
-            this.sptInterface_Map.Panel2.Controls.Add(this.btnZoomIn);
-            this.sptInterface_Map.Panel2.Controls.Add(this.mapMain);
-            this.sptInterface_Map.Size = new System.Drawing.Size(749, 552);
-            this.sptInterface_Map.SplitterDistance = 249;
+            this.sptInterface_Map.Panel2.Controls.Add(this.tabControl1);
+            this.sptInterface_Map.Size = new System.Drawing.Size(741, 493);
+            this.sptInterface_Map.SplitterDistance = 246;
             this.sptInterface_Map.TabIndex = 1;
             // 
             // sptButtons_Legend
@@ -157,13 +158,13 @@
             // sptButtons_Legend.Panel2
             // 
             this.sptButtons_Legend.Panel2.Controls.Add(this.lgdMapLegend);
-            this.sptButtons_Legend.Size = new System.Drawing.Size(249, 552);
-            this.sptButtons_Legend.SplitterDistance = 264;
+            this.sptButtons_Legend.Size = new System.Drawing.Size(246, 493);
+            this.sptButtons_Legend.SplitterDistance = 235;
             this.sptButtons_Legend.TabIndex = 0;
             // 
             // btnDrawTrail
             // 
-            this.btnDrawTrail.Location = new System.Drawing.Point(88, 134);
+            this.btnDrawTrail.Location = new System.Drawing.Point(5, 37);
             this.btnDrawTrail.Name = "btnDrawTrail";
             this.btnDrawTrail.Size = new System.Drawing.Size(75, 23);
             this.btnDrawTrail.TabIndex = 1;
@@ -172,7 +173,7 @@
             // 
             // btnAddLayer
             // 
-            this.btnAddLayer.Location = new System.Drawing.Point(88, 93);
+            this.btnAddLayer.Location = new System.Drawing.Point(5, 7);
             this.btnAddLayer.Name = "btnAddLayer";
             this.btnAddLayer.Size = new System.Drawing.Size(75, 23);
             this.btnAddLayer.TabIndex = 0;
@@ -183,7 +184,7 @@
             // lgdMapLegend
             // 
             this.lgdMapLegend.BackColor = System.Drawing.Color.White;
-            this.lgdMapLegend.ControlRectangle = new System.Drawing.Rectangle(0, 0, 249, 284);
+            this.lgdMapLegend.ControlRectangle = new System.Drawing.Rectangle(0, 0, 246, 254);
             this.lgdMapLegend.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lgdMapLegend.DocumentRectangle = new System.Drawing.Rectangle(0, 0, 187, 428);
             this.lgdMapLegend.HorizontalScrollEnabled = true;
@@ -196,15 +197,14 @@
             this.lgdMapLegend.ResetOnResize = false;
             this.lgdMapLegend.SelectionFontColor = System.Drawing.Color.Black;
             this.lgdMapLegend.SelectionHighlight = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(238)))), ((int)(((byte)(252)))));
-            this.lgdMapLegend.Size = new System.Drawing.Size(249, 284);
+            this.lgdMapLegend.Size = new System.Drawing.Size(246, 254);
             this.lgdMapLegend.TabIndex = 0;
             this.lgdMapLegend.Text = "Map Legend";
             this.lgdMapLegend.VerticalScrollEnabled = true;
             // 
             // btnSelect
             // 
-            this.btnSelect.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSelect.Location = new System.Drawing.Point(16, 104);
+            this.btnSelect.Location = new System.Drawing.Point(0, 25);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(75, 23);
             this.btnSelect.TabIndex = 9;
@@ -214,8 +214,7 @@
             // 
             // btnPan
             // 
-            this.btnPan.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnPan.Location = new System.Drawing.Point(16, 74);
+            this.btnPan.Location = new System.Drawing.Point(4, 80);
             this.btnPan.Name = "btnPan";
             this.btnPan.Size = new System.Drawing.Size(75, 23);
             this.btnPan.TabIndex = 8;
@@ -225,8 +224,7 @@
             // 
             // btnZoomOut
             // 
-            this.btnZoomOut.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnZoomOut.Location = new System.Drawing.Point(16, 44);
+            this.btnZoomOut.Location = new System.Drawing.Point(2, 52);
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(75, 23);
             this.btnZoomOut.TabIndex = 7;
@@ -236,8 +234,7 @@
             // 
             // btnZoomIn
             // 
-            this.btnZoomIn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnZoomIn.Location = new System.Drawing.Point(16, 14);
+            this.btnZoomIn.Location = new System.Drawing.Point(0, 0);
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.Size = new System.Drawing.Size(75, 23);
             this.btnZoomIn.TabIndex = 6;
@@ -257,14 +254,14 @@
             this.mapMain.IsBusy = false;
             this.mapMain.IsZoomedToMaxExtent = false;
             this.mapMain.Legend = null;
-            this.mapMain.Location = new System.Drawing.Point(0, 0);
+            this.mapMain.Location = new System.Drawing.Point(3, 3);
             this.mapMain.Name = "mapMain";
             this.mapMain.ProgressHandler = null;
             this.mapMain.ProjectionModeDefine = DotSpatial.Controls.ActionMode.Prompt;
             this.mapMain.ProjectionModeReproject = DotSpatial.Controls.ActionMode.Prompt;
             this.mapMain.RedrawLayersWhileResizing = false;
             this.mapMain.SelectionEnabled = true;
-            this.mapMain.Size = new System.Drawing.Size(496, 552);
+            this.mapMain.Size = new System.Drawing.Size(477, 461);
             this.mapMain.TabIndex = 10;
             // 
             // tabMain
@@ -277,7 +274,7 @@
             this.tabMain.Location = new System.Drawing.Point(0, 24);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(763, 584);
+            this.tabMain.Size = new System.Drawing.Size(755, 525);
             this.tabMain.TabIndex = 2;
             // 
             // tabMap
@@ -287,7 +284,7 @@
             this.tabMap.Location = new System.Drawing.Point(4, 4);
             this.tabMap.Name = "tabMap";
             this.tabMap.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMap.Size = new System.Drawing.Size(755, 558);
+            this.tabMap.Size = new System.Drawing.Size(747, 499);
             this.tabMap.TabIndex = 0;
             this.tabMap.Text = "Map";
             // 
@@ -297,19 +294,10 @@
             this.tabGraph.Location = new System.Drawing.Point(4, 4);
             this.tabGraph.Name = "tabGraph";
             this.tabGraph.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGraph.Size = new System.Drawing.Size(755, 558);
+            this.tabGraph.Size = new System.Drawing.Size(747, 499);
             this.tabGraph.TabIndex = 1;
             this.tabGraph.Text = "Graphs";
             this.tabGraph.UseVisualStyleBackColor = true;
-            // 
-            // tabTables
-            // 
-            this.tabTables.BackColor = System.Drawing.Color.Gainsboro;
-            this.tabTables.Location = new System.Drawing.Point(4, 4);
-            this.tabTables.Name = "tabTables";
-            this.tabTables.Size = new System.Drawing.Size(755, 558);
-            this.tabTables.TabIndex = 2;
-            this.tabTables.Text = "Tables";
             // 
             // zedGraph
             // 
@@ -318,8 +306,17 @@
             this.zedGraph.Location = new System.Drawing.Point(3, 3);
             this.zedGraph.Name = "zedGraph";
             this.zedGraph.PointValueFormat = "G";
-            this.zedGraph.Size = new System.Drawing.Size(749, 552);
+            this.zedGraph.Size = new System.Drawing.Size(741, 493);
             this.zedGraph.TabIndex = 0;
+            // 
+            // tabTables
+            // 
+            this.tabTables.BackColor = System.Drawing.Color.Gainsboro;
+            this.tabTables.Location = new System.Drawing.Point(4, 4);
+            this.tabTables.Name = "tabTables";
+            this.tabTables.Size = new System.Drawing.Size(747, 499);
+            this.tabTables.TabIndex = 2;
+            this.tabTables.Text = "Tables";
             // 
             // appManager1
             // 
@@ -336,8 +333,8 @@
             this.spatialDockManager1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spatialDockManager1.Location = new System.Drawing.Point(0, 24);
             this.spatialDockManager1.Name = "spatialDockManager1";
-            this.spatialDockManager1.Size = new System.Drawing.Size(763, 584);
-            this.spatialDockManager1.SplitterDistance = 254;
+            this.spatialDockManager1.Size = new System.Drawing.Size(755, 525);
+            this.spatialDockManager1.SplitterDistance = 251;
             this.spatialDockManager1.TabControl1 = null;
             this.spatialDockManager1.TabControl2 = null;
             this.spatialDockManager1.TabIndex = 3;
@@ -350,19 +347,56 @@
             // 
             // spatialStatusStrip1
             // 
-            this.spatialStatusStrip1.Location = new System.Drawing.Point(0, 586);
+            this.spatialStatusStrip1.Location = new System.Drawing.Point(0, 527);
             this.spatialStatusStrip1.Name = "spatialStatusStrip1";
             this.spatialStatusStrip1.ProgressBar = null;
             this.spatialStatusStrip1.ProgressLabel = null;
-            this.spatialStatusStrip1.Size = new System.Drawing.Size(763, 22);
+            this.spatialStatusStrip1.Size = new System.Drawing.Size(755, 22);
             this.spatialStatusStrip1.TabIndex = 4;
             this.spatialStatusStrip1.Text = "spatialStatusStrip1";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(491, 493);
+            this.tabControl1.TabIndex = 2;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.btnSelect);
+            this.tabPage1.Controls.Add(this.btnPan);
+            this.tabPage1.Controls.Add(this.btnZoomOut);
+            this.tabPage1.Controls.Add(this.btnZoomIn);
+            this.tabPage1.Controls.Add(this.mapMain);
+            this.tabPage1.Location = new System.Drawing.Point(4, 4);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(483, 467);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 4);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(483, 467);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // frmBikeAnalyzer2K15
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(763, 608);
+            this.ClientSize = new System.Drawing.Size(755, 549);
             this.Controls.Add(this.spatialStatusStrip1);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.spatialDockManager1);
@@ -386,6 +420,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.spatialDockManager1)).EndInit();
             this.spatialDockManager1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -418,6 +454,9 @@
         private DotSpatial.Controls.SpatialDockManager spatialDockManager1;
         private DotSpatial.Controls.SpatialHeaderControl spatialHeaderControl1;
         private DotSpatial.Controls.SpatialStatusStrip spatialStatusStrip1;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }
 
