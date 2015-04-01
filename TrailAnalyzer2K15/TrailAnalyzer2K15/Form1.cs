@@ -60,7 +60,7 @@ namespace TrailAnalyzer2K15
 
         private void frmBikeAnalyzer2K15_Load(object sender, EventArgs e)
         {
-            mapMain.AddRasterLayer();
+            //mapMain.AddRasterLayer();
         }
     }
 }
