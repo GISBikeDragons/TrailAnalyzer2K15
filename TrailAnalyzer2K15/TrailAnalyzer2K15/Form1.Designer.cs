@@ -61,6 +61,10 @@
             this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnSampleEasier = new System.Windows.Forms.Button();
+            this.btnSampleModerate = new System.Windows.Forms.Button();
+            this.btnSampleExpert = new System.Windows.Forms.Button();
+            this.btnSampleExtreme = new System.Windows.Forms.Button();
             this.menLayoutMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sptInterface_Map)).BeginInit();
             this.sptInterface_Map.Panel1.SuspendLayout();
@@ -157,6 +161,10 @@
             // sptButtons_Legend.Panel1
             // 
             this.sptButtons_Legend.Panel1.BackColor = System.Drawing.Color.White;
+            this.sptButtons_Legend.Panel1.Controls.Add(this.btnSampleExtreme);
+            this.sptButtons_Legend.Panel1.Controls.Add(this.btnSampleExpert);
+            this.sptButtons_Legend.Panel1.Controls.Add(this.btnSampleModerate);
+            this.sptButtons_Legend.Panel1.Controls.Add(this.btnSampleEasier);
             this.sptButtons_Legend.Panel1.Controls.Add(this.btnGraph);
             this.sptButtons_Legend.Panel1.Controls.Add(this.btnDrawTrail);
             this.sptButtons_Legend.Panel1.Controls.Add(this.btnAddLayer);
@@ -435,6 +443,43 @@
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Visible = false;
             // 
+            // btnSampleEasier
+            // 
+            this.btnSampleEasier.Location = new System.Drawing.Point(5, 95);
+            this.btnSampleEasier.Name = "btnSampleEasier";
+            this.btnSampleEasier.Size = new System.Drawing.Size(73, 35);
+            this.btnSampleEasier.TabIndex = 3;
+            this.btnSampleEasier.Text = "Easier Trail Data";
+            this.btnSampleEasier.UseVisualStyleBackColor = true;
+            // 
+            // btnSampleModerate
+            // 
+            this.btnSampleModerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnSampleModerate.Location = new System.Drawing.Point(84, 95);
+            this.btnSampleModerate.Name = "btnSampleModerate";
+            this.btnSampleModerate.Size = new System.Drawing.Size(68, 35);
+            this.btnSampleModerate.TabIndex = 4;
+            this.btnSampleModerate.Text = "Moderate Trail Data";
+            this.btnSampleModerate.UseVisualStyleBackColor = true;
+            // 
+            // btnSampleExpert
+            // 
+            this.btnSampleExpert.Location = new System.Drawing.Point(5, 136);
+            this.btnSampleExpert.Name = "btnSampleExpert";
+            this.btnSampleExpert.Size = new System.Drawing.Size(73, 35);
+            this.btnSampleExpert.TabIndex = 5;
+            this.btnSampleExpert.Text = "Expert Trail Data";
+            this.btnSampleExpert.UseVisualStyleBackColor = true;
+            // 
+            // btnSampleExtreme
+            // 
+            this.btnSampleExtreme.Location = new System.Drawing.Point(84, 136);
+            this.btnSampleExtreme.Name = "btnSampleExtreme";
+            this.btnSampleExtreme.Size = new System.Drawing.Size(68, 35);
+            this.btnSampleExtreme.TabIndex = 6;
+            this.btnSampleExtreme.Text = "Extreme Trail Data";
+            this.btnSampleExtreme.UseVisualStyleBackColor = true;
+            // 
             // frmBikeAnalyzer2K15
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -509,6 +554,10 @@
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Button btnGraph;
+        private System.Windows.Forms.Button btnSampleExtreme;
+        private System.Windows.Forms.Button btnSampleExpert;
+        private System.Windows.Forms.Button btnSampleModerate;
+        private System.Windows.Forms.Button btnSampleEasier;
     }
 }
 
