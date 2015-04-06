@@ -49,7 +49,7 @@
             this.btnZoomIn = new System.Windows.Forms.Button();
             this.mapMain = new DotSpatial.Controls.Map();
             this.tabPageGraph = new System.Windows.Forms.TabPage();
-            this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
+            this.zedGraphElevationPlot = new ZedGraph.ZedGraphControl();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabMap = new System.Windows.Forms.TabPage();
             this.tabGraph = new System.Windows.Forms.TabPage();
@@ -317,7 +317,7 @@
             // 
             // tabPageGraph
             // 
-            this.tabPageGraph.Controls.Add(this.zedGraphControl1);
+            this.tabPageGraph.Controls.Add(this.zedGraphElevationPlot);
             this.tabPageGraph.Location = new System.Drawing.Point(4, 4);
             this.tabPageGraph.Name = "tabPageGraph";
             this.tabPageGraph.Padding = new System.Windows.Forms.Padding(3);
@@ -326,15 +326,15 @@
             this.tabPageGraph.Text = "Graph";
             this.tabPageGraph.UseVisualStyleBackColor = true;
             // 
-            // zedGraphControl1
+            // zedGraphElevationPlot
             // 
-            this.zedGraphControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.zedGraphControl1.IsShowPointValues = false;
-            this.zedGraphControl1.Location = new System.Drawing.Point(3, 3);
-            this.zedGraphControl1.Name = "zedGraphControl1";
-            this.zedGraphControl1.PointValueFormat = "G";
-            this.zedGraphControl1.Size = new System.Drawing.Size(561, 461);
-            this.zedGraphControl1.TabIndex = 0;
+            this.zedGraphElevationPlot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.zedGraphElevationPlot.IsShowPointValues = false;
+            this.zedGraphElevationPlot.Location = new System.Drawing.Point(3, 3);
+            this.zedGraphElevationPlot.Name = "zedGraphElevationPlot";
+            this.zedGraphElevationPlot.PointValueFormat = "G";
+            this.zedGraphElevationPlot.Size = new System.Drawing.Size(561, 461);
+            this.zedGraphElevationPlot.TabIndex = 0;
             // 
             // tabMain
             // 
@@ -451,6 +451,7 @@
             this.btnSampleEasier.TabIndex = 3;
             this.btnSampleEasier.Text = "Easier Trail Data";
             this.btnSampleEasier.UseVisualStyleBackColor = true;
+            this.btnSampleEasier.Click += new System.EventHandler(this.btnSampleEasier_Click);
             // 
             // btnSampleModerate
             // 
@@ -550,7 +551,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPageMap;
         private System.Windows.Forms.TabPage tabPageGraph;
-        private ZedGraph.ZedGraphControl zedGraphControl1;
+        private ZedGraph.ZedGraphControl zedGraphElevationPlot;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Button btnGraph;

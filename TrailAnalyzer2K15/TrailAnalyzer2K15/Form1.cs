@@ -7,6 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZedGraph;
+using DotSpatial;
+using DotSpatial.Data;
+using DotSpatial.Controls;
+using DotSpatial.Topology;
+
 
 namespace TrailAnalyzer2K15
 {
@@ -61,6 +67,27 @@ namespace TrailAnalyzer2K15
         private void frmBikeAnalyzer2K15_Load(object sender, EventArgs e)
         {
             //mapMain.AddRasterLayer();
+        }
+
+        private void btnSampleEasier_Click(object sender, EventArgs e)
+        {
+            /* 
+             * The purpose of this button is to show the user how a real trail
+             * rated as "Easier" would look like for when they decide to load
+             * in or draw a trail and import a raster for analysis.
+             */
+
+            // This is to remove all plots
+            zedGraphElevationPlot.GraphPane.CurveList.Clear();
+
+            // GraphPane object holds one or more Curve objects (or plots)
+            GraphPane myPane = zedGraphElevationPlot.GraphPane;
+
+            // Change the title text to Easier Sample Data
+            myPane.Title = "Sample: Easier Trail";
+
+
+
         }
     }
 }
