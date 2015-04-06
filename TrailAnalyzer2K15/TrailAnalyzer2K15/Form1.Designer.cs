@@ -185,6 +185,7 @@
             this.btnSampleExtreme.TabIndex = 6;
             this.btnSampleExtreme.Text = "Extreme Trail Data";
             this.btnSampleExtreme.UseVisualStyleBackColor = true;
+            this.btnSampleExtreme.Click += new System.EventHandler(this.btnSampleExtreme_Click);
             // 
             // btnSampleExpert
             // 
@@ -194,6 +195,7 @@
             this.btnSampleExpert.TabIndex = 5;
             this.btnSampleExpert.Text = "Expert Trail Data";
             this.btnSampleExpert.UseVisualStyleBackColor = true;
+            this.btnSampleExpert.Click += new System.EventHandler(this.btnSampleExpert_Click);
             // 
             // btnSampleModerate
             // 
@@ -204,6 +206,7 @@
             this.btnSampleModerate.TabIndex = 4;
             this.btnSampleModerate.Text = "Moderate Trail Data";
             this.btnSampleModerate.UseVisualStyleBackColor = true;
+            this.btnSampleModerate.Click += new System.EventHandler(this.btnSampleModerate_Click);
             // 
             // btnSampleEasier
             // 

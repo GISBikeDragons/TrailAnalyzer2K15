@@ -12,6 +12,7 @@ using DotSpatial;
 using DotSpatial.Data;
 using DotSpatial.Controls;
 using DotSpatial.Topology;
+using DotSpatial.Projections;
 
 
 namespace TrailAnalyzer2K15
@@ -23,6 +24,8 @@ namespace TrailAnalyzer2K15
         List<Coordinate> drawPointsList = new List<Coordinate>();
         string name;
         MapLineLayer linelyr;
+        private IMapRasterLayer MyRasterLayer;
+        private IMapFeatureLayer MySampleLine; 
 
         public frmBikeAnalyzer2K15()
         {
@@ -83,16 +86,53 @@ namespace TrailAnalyzer2K15
              * in or draw a trail and import a raster for analysis.
              */
 
+            // Delete Previous Layers if already there, using a try-catch reference
+            try
+            {
+                mapMain.Layers.Remove(MyRasterLayer);
+                mapMain.Layers.Remove(MySampleLine);
+            }
+            catch 
+            {
+                // Do Nothing
+            }
+
+            // Load in the sample data, background data first
+            // 1) Load in raster first
+            MyRasterLayer = mapMain.Layers.Add(Raster.Open("..\\data\\Sample_Easier\\ned_easier\\prj.adf"));
+            MyRasterLayer.LegendText = "NED10_Easier_Raster";
+            mapMain.ZoomToMaxExtent();
+            // 2) Load in shapefile after, so that it is seen above the raster in the map and legend
+            MySampleLine = mapMain.Layers.Add(Shapefile.Open("..\\data\\Sample_Easier\\SampleTrail_Easier.shp"));
+            MySampleLine.LegendText = "SampleTrail_Easier";
+            
+            // Here we will need to do a sample analysis of the data
+
+                /* */
+
+            // End Analysis of sample data, Add data to Plot
+
             // This is to remove all plots
             zedGraphElevationPlot.GraphPane.CurveList.Clear();
+                /* */
+
+            // End of Adding Data to plot
 
             // GraphPane object holds one or more Curve objects (or plots)
             GraphPane myPane = zedGraphElevationPlot.GraphPane;
 
-            // Change the title text to Easier Sample Data
+            // Change the title, x-axis, and y-axis text for the easier sample data
             myPane.Title = "Sample: Easier Trail";
+            myPane.XAxis.Title = "Total Distance [m]";
+            myPane.YAxis.Title = "Elevation [m]";
 
+            // Refreshing the plot
+            zedGraphElevationPlot.AxisChange();
+            zedGraphElevationPlot.Invalidate();
+            zedGraphElevationPlot.Refresh();
 
+            // Show the graph now by changing the tab index from 0 (Map) to 1 (Graph)
+            tabControl1.SelectedIndex = 1;
 
         }
 
@@ -185,6 +225,177 @@ namespace TrailAnalyzer2K15
         private void btnDrawTrail_Click_1(object sender, EventArgs e)
         {
             amDigitizing = true;
+        }
+
+        private void btnSampleModerate_Click(object sender, EventArgs e)
+        {
+            /* 
+             * The purpose of this button is to show the user how a real trail
+             * rated as "Moderate" would look like for when they decide to load
+             * in or draw a trail and import a raster for analysis.
+             */
+
+            // Delete Previous Layers if already there, using a try-catch reference
+            try
+            {
+                mapMain.Layers.Remove(MyRasterLayer);
+                mapMain.Layers.Remove(MySampleLine);
+            }
+            catch
+            {
+                // Do Nothing
+            }
+
+            // Load in the sample data, background data first
+            // 1) Load in raster first
+            MyRasterLayer = mapMain.Layers.Add(Raster.Open("..\\data\\Sample_Moderate\\ned_moderate\\prj.adf"));
+            MyRasterLayer.LegendText = "NED10_Moderate_Raster";
+            mapMain.ZoomToMaxExtent();
+            // 2) Load in shapefile after, so that it is seen above the raster in the map and legend
+            MySampleLine = mapMain.Layers.Add(Shapefile.Open("..\\data\\Sample_Moderate\\SampleTrail_Moderate.shp"));
+            MySampleLine.LegendText = "SampleTrail_Moderate";
+
+            // Here we will need to do a sample analysis of the data
+
+            /* */
+
+            // End Analysis of sample data, Add data to Plot
+
+            // This is to remove all plots
+            zedGraphElevationPlot.GraphPane.CurveList.Clear();
+            /* */
+
+            // End of Adding Data to plot
+
+            // GraphPane object holds one or more Curve objects (or plots)
+            GraphPane myPane = zedGraphElevationPlot.GraphPane;
+
+            // Change the title, x-axis, and y-axis text for the Moderate sample data
+            myPane.Title = "Sample: Moderate Trail";
+            myPane.XAxis.Title = "Total Distance [m]";
+            myPane.YAxis.Title = "Elevation [m]";
+
+            // Refreshing the plot
+            zedGraphElevationPlot.AxisChange();
+            zedGraphElevationPlot.Invalidate();
+            zedGraphElevationPlot.Refresh();
+
+            // Show the graph now by changing the tab index from 0 (Map) to 1 (Graph)
+            tabControl1.SelectedIndex = 1;
+        }
+
+        private void btnSampleExpert_Click(object sender, EventArgs e)
+        {
+            /* 
+             * The purpose of this button is to show the user how a real trail
+             * rated as "Expert" would look like for when they decide to load
+             * in or draw a trail and import a raster for analysis.
+             */
+
+            // Delete Previous Layers if already there, using a try-catch reference
+            try
+            {
+                mapMain.Layers.Remove(MyRasterLayer);
+                mapMain.Layers.Remove(MySampleLine);
+            }
+            catch
+            {
+                // Do Nothing
+            }
+
+            // Load in the sample data, background data first
+            // 1) Load in raster first
+            MyRasterLayer = mapMain.Layers.Add(Raster.Open("..\\data\\Sample_Expert\\ned_expert\\prj.adf"));
+            MyRasterLayer.LegendText = "NED10_Expert_Raster";
+            mapMain.ZoomToMaxExtent();
+            // 2) Load in shapefile after, so that it is seen above the raster in the map and legend
+            MySampleLine = mapMain.Layers.Add(Shapefile.Open("..\\data\\Sample_Expert\\SampleTrail_Expert.shp"));
+            MySampleLine.LegendText = "SampleTrail_Expert";
+
+            // Here we will need to do a sample analysis of the data
+
+            /* */
+
+            // End Analysis of sample data, Add data to Plot
+
+            // This is to remove all plots
+            zedGraphElevationPlot.GraphPane.CurveList.Clear();
+            /* */
+
+            // End of Adding Data to plot
+
+            // GraphPane object holds one or more Curve objects (or plots)
+            GraphPane myPane = zedGraphElevationPlot.GraphPane;
+
+            // Change the title, x-axis, and y-axis text for the Expert sample data
+            myPane.Title = "Sample: Expert Trail";
+            myPane.XAxis.Title = "Total Distance [m]";
+            myPane.YAxis.Title = "Elevation [m]";
+
+            // Refreshing the plot
+            zedGraphElevationPlot.AxisChange();
+            zedGraphElevationPlot.Invalidate();
+            zedGraphElevationPlot.Refresh();
+
+            // Show the graph now by changing the tab index from 0 (Map) to 1 (Graph)
+            tabControl1.SelectedIndex = 1;
+        }
+
+        private void btnSampleExtreme_Click(object sender, EventArgs e)
+        {
+            /* 
+             * The purpose of this button is to show the user how a real trail
+             * rated as "Extreme" would look like for when they decide to load
+             * in or draw a trail and import a raster for analysis.
+             */
+
+            // Delete Previous Layers if already there, using a try-catch reference
+            try
+            {
+                mapMain.Layers.Remove(MyRasterLayer);
+                mapMain.Layers.Remove(MySampleLine);
+            }
+            catch
+            {
+                // Do Nothing
+            }
+
+            // Load in the sample data, background data first
+            // 1) Load in raster first
+            MyRasterLayer = mapMain.Layers.Add(Raster.Open("..\\data\\Sample_Extreme\\ned_extreme\\prj.adf"));
+            MyRasterLayer.LegendText = "NED10_Extreme_Raster";
+            mapMain.ZoomToMaxExtent();
+            // 2) Load in shapefile after, so that it is seen above the raster in the map and legend
+            MySampleLine = mapMain.Layers.Add(Shapefile.Open("..\\data\\Sample_Extreme\\SampleTrail_Extreme.shp"));
+            MySampleLine.LegendText = "SampleTrail_Extreme";
+
+            // Here we will need to do a sample analysis of the data
+
+            /* */
+
+            // End Analysis of sample data, Add data to Plot
+
+            // This is to remove all plots
+            zedGraphElevationPlot.GraphPane.CurveList.Clear();
+            /* */
+
+            // End of Adding Data to plot
+
+            // GraphPane object holds one or more Curve objects (or plots)
+            GraphPane myPane = zedGraphElevationPlot.GraphPane;
+
+            // Change the title, x-axis, and y-axis text for the Extreme sample data
+            myPane.Title = "Sample: Extreme Trail";
+            myPane.XAxis.Title = "Total Distance [m]";
+            myPane.YAxis.Title = "Elevation [m]";
+
+            // Refreshing the plot
+            zedGraphElevationPlot.AxisChange();
+            zedGraphElevationPlot.Invalidate();
+            zedGraphElevationPlot.Refresh();
+
+            // Show the graph now by changing the tab index from 0 (Map) to 1 (Graph)
+            tabControl1.SelectedIndex = 1;
         }
     }
 }
