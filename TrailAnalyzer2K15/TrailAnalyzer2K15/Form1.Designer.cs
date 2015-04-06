@@ -37,6 +37,10 @@
             this.manageLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sptInterface_Map = new System.Windows.Forms.SplitContainer();
             this.sptButtons_Legend = new System.Windows.Forms.SplitContainer();
+            this.btnSampleExtreme = new System.Windows.Forms.Button();
+            this.btnSampleExpert = new System.Windows.Forms.Button();
+            this.btnSampleModerate = new System.Windows.Forms.Button();
+            this.btnSampleEasier = new System.Windows.Forms.Button();
             this.btnGraph = new System.Windows.Forms.Button();
             this.btnDrawTrail = new System.Windows.Forms.Button();
             this.btnAddLayer = new System.Windows.Forms.Button();
@@ -61,10 +65,6 @@
             this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnSampleEasier = new System.Windows.Forms.Button();
-            this.btnSampleModerate = new System.Windows.Forms.Button();
-            this.btnSampleExpert = new System.Windows.Forms.Button();
-            this.btnSampleExtreme = new System.Windows.Forms.Button();
             this.menLayoutMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sptInterface_Map)).BeginInit();
             this.sptInterface_Map.Panel1.SuspendLayout();
@@ -177,6 +177,44 @@
             this.sptButtons_Legend.SplitterDistance = 235;
             this.sptButtons_Legend.TabIndex = 0;
             // 
+            // btnSampleExtreme
+            // 
+            this.btnSampleExtreme.Location = new System.Drawing.Point(84, 136);
+            this.btnSampleExtreme.Name = "btnSampleExtreme";
+            this.btnSampleExtreme.Size = new System.Drawing.Size(68, 35);
+            this.btnSampleExtreme.TabIndex = 6;
+            this.btnSampleExtreme.Text = "Extreme Trail Data";
+            this.btnSampleExtreme.UseVisualStyleBackColor = true;
+            // 
+            // btnSampleExpert
+            // 
+            this.btnSampleExpert.Location = new System.Drawing.Point(5, 136);
+            this.btnSampleExpert.Name = "btnSampleExpert";
+            this.btnSampleExpert.Size = new System.Drawing.Size(73, 35);
+            this.btnSampleExpert.TabIndex = 5;
+            this.btnSampleExpert.Text = "Expert Trail Data";
+            this.btnSampleExpert.UseVisualStyleBackColor = true;
+            // 
+            // btnSampleModerate
+            // 
+            this.btnSampleModerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnSampleModerate.Location = new System.Drawing.Point(84, 95);
+            this.btnSampleModerate.Name = "btnSampleModerate";
+            this.btnSampleModerate.Size = new System.Drawing.Size(68, 35);
+            this.btnSampleModerate.TabIndex = 4;
+            this.btnSampleModerate.Text = "Moderate Trail Data";
+            this.btnSampleModerate.UseVisualStyleBackColor = true;
+            // 
+            // btnSampleEasier
+            // 
+            this.btnSampleEasier.Location = new System.Drawing.Point(5, 95);
+            this.btnSampleEasier.Name = "btnSampleEasier";
+            this.btnSampleEasier.Size = new System.Drawing.Size(73, 35);
+            this.btnSampleEasier.TabIndex = 3;
+            this.btnSampleEasier.Text = "Easier Trail Data";
+            this.btnSampleEasier.UseVisualStyleBackColor = true;
+            this.btnSampleEasier.Click += new System.EventHandler(this.btnSampleEasier_Click);
+            // 
             // btnGraph
             // 
             this.btnGraph.Location = new System.Drawing.Point(5, 66);
@@ -194,6 +232,7 @@
             this.btnDrawTrail.TabIndex = 1;
             this.btnDrawTrail.Text = "Draw Trail";
             this.btnDrawTrail.UseVisualStyleBackColor = true;
+            this.btnDrawTrail.Click += new System.EventHandler(this.btnDrawTrail_Click_1);
             // 
             // btnAddLayer
             // 
@@ -314,6 +353,8 @@
             this.mapMain.SelectionEnabled = true;
             this.mapMain.Size = new System.Drawing.Size(561, 461);
             this.mapMain.TabIndex = 10;
+            this.mapMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapMain_MouseClick);
+            this.mapMain.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.mapMain_MouseDoubleClick);
             // 
             // tabPageGraph
             // 
@@ -442,44 +483,6 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Visible = false;
-            // 
-            // btnSampleEasier
-            // 
-            this.btnSampleEasier.Location = new System.Drawing.Point(5, 95);
-            this.btnSampleEasier.Name = "btnSampleEasier";
-            this.btnSampleEasier.Size = new System.Drawing.Size(73, 35);
-            this.btnSampleEasier.TabIndex = 3;
-            this.btnSampleEasier.Text = "Easier Trail Data";
-            this.btnSampleEasier.UseVisualStyleBackColor = true;
-            this.btnSampleEasier.Click += new System.EventHandler(this.btnSampleEasier_Click);
-            // 
-            // btnSampleModerate
-            // 
-            this.btnSampleModerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnSampleModerate.Location = new System.Drawing.Point(84, 95);
-            this.btnSampleModerate.Name = "btnSampleModerate";
-            this.btnSampleModerate.Size = new System.Drawing.Size(68, 35);
-            this.btnSampleModerate.TabIndex = 4;
-            this.btnSampleModerate.Text = "Moderate Trail Data";
-            this.btnSampleModerate.UseVisualStyleBackColor = true;
-            // 
-            // btnSampleExpert
-            // 
-            this.btnSampleExpert.Location = new System.Drawing.Point(5, 136);
-            this.btnSampleExpert.Name = "btnSampleExpert";
-            this.btnSampleExpert.Size = new System.Drawing.Size(73, 35);
-            this.btnSampleExpert.TabIndex = 5;
-            this.btnSampleExpert.Text = "Expert Trail Data";
-            this.btnSampleExpert.UseVisualStyleBackColor = true;
-            // 
-            // btnSampleExtreme
-            // 
-            this.btnSampleExtreme.Location = new System.Drawing.Point(84, 136);
-            this.btnSampleExtreme.Name = "btnSampleExtreme";
-            this.btnSampleExtreme.Size = new System.Drawing.Size(68, 35);
-            this.btnSampleExtreme.TabIndex = 6;
-            this.btnSampleExtreme.Text = "Extreme Trail Data";
-            this.btnSampleExtreme.UseVisualStyleBackColor = true;
             // 
             // frmBikeAnalyzer2K15
             // 

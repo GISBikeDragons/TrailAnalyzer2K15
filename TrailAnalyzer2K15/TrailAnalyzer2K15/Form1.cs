@@ -18,6 +18,12 @@ namespace TrailAnalyzer2K15
 {
     public partial class frmBikeAnalyzer2K15 : Form
     {
+
+        bool amDigitizing = false;
+        List<Coordinate> drawPointsList = new List<Coordinate>();
+        string name;
+        MapLineLayer linelyr;
+
         public frmBikeAnalyzer2K15()
         {
             InitializeComponent();
@@ -88,6 +94,97 @@ namespace TrailAnalyzer2K15
 
 
 
+        }
+
+        private void mapMain_MouseClick(object sender, MouseEventArgs e)
+        {
+            //digitizing polyline
+            if (amDigitizing == true)
+            {
+                Coordinate c = new Coordinate();
+                System.Drawing.Point p = new System.Drawing.Point();
+                p.X = e.X;
+                p.Y = e.Y;
+                c = mapMain.PixelToProj(p);
+
+                drawPointsList.Add(c);
+
+            }
+        }
+
+        private void mapMain_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //finish drawing polyline
+            if (amDigitizing == true)
+            {
+                Coordinate c = new Coordinate();
+                System.Drawing.Point p = new System.Drawing.Point();
+                p.X = e.X;
+                p.Y = e.Y;
+                c = mapMain.PixelToProj(p);
+
+                foreach (Coordinate c1 in drawPointsList)
+                {
+                    if ((c.X / c1.X) < 0.05)   //ensures an intentional double click
+                    {
+                        drawPointsList.Add(c);
+                    }
+                }
+
+                amDigitizing = false;
+
+                //show the line being drawn by user in the legend
+                var list = mapMain.Layers.Where(item => item.LegendText == "Drawing Trail");
+                IMapLineLayer l1 = null;
+                foreach (var item in list)
+                {
+                    Console.WriteLine(item.LegendText.ToString());
+                    l1 = (IMapLineLayer)item;
+                }
+
+                //delete "drawing trail" when user is done digitizing
+                mapMain.Layers.Remove(l1);
+                mapMain.FunctionMode = FunctionMode.Select;
+
+                //create new polyline layer
+                Feature f = new Feature(FeatureType.Line, drawPointsList);
+                FeatureSet fs = new FeatureSet();
+                fs.Projection = mapMain.Projection;
+                fs.AddFeature(f);
+
+                //allow user to save shapefile
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                saveFileDialog1.Filter = "shapefiles (*shp|";
+                saveFileDialog1.FilterIndex = 2;
+                saveFileDialog1.RestoreDirectory = true;
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    IFeature fe = (Feature)fs.Features[0];
+
+                    IList<Coordinate> loadPointList = fe.BasicGeometry.Coordinates;
+
+                    if (!saveFileDialog1.FileName.ToLower().Contains(".shp"))
+                    {
+                        saveFileDialog1.FileName += ".shp";
+                    }
+                    fs.SaveAs(saveFileDialog1.FileName, true);
+                    linelyr = (MapLineLayer)mapMain.AddLayer(saveFileDialog1.FileName);
+                    name = linelyr.DataSet.Name;
+
+                    //plot on zedgraph
+                    //zedGraphThatLine(loadPointList, name);
+                }
+
+                mapMain.Invalidate();
+
+            }
+        }
+
+        private void btnDrawTrail_Click_1(object sender, EventArgs e)
+        {
+            amDigitizing = true;
         }
     }
 }
