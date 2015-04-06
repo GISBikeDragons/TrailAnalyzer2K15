@@ -33,6 +33,30 @@ namespace TrailAnalyzer2K15
             appManager1.LoadExtensions();
         }
 
+        //program for analyzing the trail, at least trying
+        private void AnalyzeTrailHardness(MapRasterLayer InputRas, MapLineLayer InputShp)
+        {
+            // Creating a temporary coordinate object to us in our loop below
+            Coordinate TempCord;
+
+            // Get the number of points in our polyline
+            int NumberOfPoints = InputShp.DataSet.Features[1].NumPoints;
+
+            //Make some temporary variables for the vertex x and y values
+            double x1 = 0, y1 = 0, x2 = 0, y2 = 0, dx, dy, newx, newy, newz, slope;
+            double cellwidth = InputRas.DataSet.CellWidth;
+
+            // Stepping through all the vertices in the polyline
+            for (int i = 0; i < NumberOfPoints; i++)
+            {
+                if (i == 0) 
+                {
+                    //this is for the first vertex in the polyline
+                    //x2 = linelyr.DataSet.
+                }
+            }
+        }
+
         //Button controls for interacting with the map
         private void btnDrawTrail_Click(object sender, EventArgs e)
         {
