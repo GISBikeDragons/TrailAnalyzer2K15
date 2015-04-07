@@ -25,7 +25,8 @@ namespace TrailAnalyzer2K15
         string name;
         MapLineLayer linelyr;
         private IMapRasterLayer MyRasterLayer;
-        private IMapFeatureLayer MySampleLine; 
+        private IMapFeatureLayer MySampleLine;
+        private List<Coordinate> MyExtractedPoints = new List<Coordinate>();
 
         public frmBikeAnalyzer2K15()
         {
@@ -40,7 +41,7 @@ namespace TrailAnalyzer2K15
             Coordinate TempCord;
 
             // Get the number of points in our polyline
-            int NumberOfPoints = InputShp.DataSet.Features[1].NumPoints;
+            int NumberOfPoints = InputShp.DataSet.Features[0].NumPoints;
 
             //Make some temporary variables for the vertex x and y values
             double x1 = 0, y1 = 0, x2 = 0, y2 = 0, dx, dy, newx, newy, newz, slope;
@@ -49,10 +50,46 @@ namespace TrailAnalyzer2K15
             // Stepping through all the vertices in the polyline
             for (int i = 0; i < NumberOfPoints; i++)
             {
-                if (i == 0) 
+                if (i == 0)
                 {
-                    //this is for the first vertex in the polyline
-                    //x2 = linelyr.DataSet.
+                    // This is for the first vertex in the polyline
+                    x2 = InputShp.DataSet.Features[0].Coordinates[i].X;
+                    y2 = InputShp.DataSet.Features[0].Coordinates[i].Y;
+                }
+                else 
+                {
+                    // Set the current start vertex to be the last end vertex.
+                    x1 = x2;
+                    y1 = y2;
+
+                    // Reset the current x and y = x2 and y2
+                    x2 = InputShp.DataSet.Features[0].Coordinates[i].X;
+                    y2 = InputShp.DataSet.Features[0].Coordinates[i].Y;
+
+                    //Get the distance between x1 y1 x2 and y2
+                    dx = x2 - x1;
+                    dy = y2 - y1;
+                    slope = dy / dx;
+
+                    //walk along the line segment from point 1 to point 2 at 1 grid cell width at a time
+                    TempCord = new Coordinate();
+                    newx = x1;
+                    newy = y1;
+                    while (newx < x2)
+                    {
+                        //at each step along the line segment, get the x, y, and z values.
+                        newx += cellwidth;
+                        newy += cellwidth * slope;
+                        newz = RasterExt.GetNearestValue(InputRas.DataSet, newx, newy);
+
+                        //now set up a coordinate that has these values
+                        TempCord = new Coordinate();
+                        TempCord.X = newx;
+                        TempCord.Y = newy;
+                        TempCord.Z = newz;
+                        MyExtractedPoints.Add(TempCord);
+                    }
+                    //now we need to analyze the list of elevations and coordinates
                 }
             }
         }
