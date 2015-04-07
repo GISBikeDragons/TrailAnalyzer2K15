@@ -53,7 +53,17 @@
             this.btnZoomIn = new System.Windows.Forms.Button();
             this.mapMain = new DotSpatial.Controls.Map();
             this.tabPageGraph = new System.Windows.Forms.TabPage();
+            this.sptGraphDialog = new System.Windows.Forms.SplitContainer();
             this.zedGraphElevationPlot = new ZedGraph.ZedGraphControl();
+            this.lblMaxDownSlope = new System.Windows.Forms.Label();
+            this.lblElevationDifference = new System.Windows.Forms.Label();
+            this.lblDistanceDown = new System.Windows.Forms.Label();
+            this.lblMaxUpSlope = new System.Windows.Forms.Label();
+            this.lblElevationClimb = new System.Windows.Forms.Label();
+            this.lblDistanceUp = new System.Windows.Forms.Label();
+            this.lblTotalDistance = new System.Windows.Forms.Label();
+            this.lblRating = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabMap = new System.Windows.Forms.TabPage();
             this.tabGraph = new System.Windows.Forms.TabPage();
@@ -65,16 +75,8 @@
             this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.sptGraphDialog = new System.Windows.Forms.SplitContainer();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.lblRating = new System.Windows.Forms.Label();
-            this.lblTotalDistance = new System.Windows.Forms.Label();
-            this.lblDistanceUp = new System.Windows.Forms.Label();
-            this.lblElevationClimb = new System.Windows.Forms.Label();
-            this.lblMaxUpSlope = new System.Windows.Forms.Label();
-            this.lblDistanceDown = new System.Windows.Forms.Label();
-            this.lblElevationDifference = new System.Windows.Forms.Label();
-            this.lblMaxDownSlope = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpboxSampleData = new System.Windows.Forms.GroupBox();
             this.menLayoutMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sptInterface_Map)).BeginInit();
             this.sptInterface_Map.Panel1.SuspendLayout();
@@ -87,6 +89,10 @@
             this.tabControl1.SuspendLayout();
             this.tabPageMap.SuspendLayout();
             this.tabPageGraph.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sptGraphDialog)).BeginInit();
+            this.sptGraphDialog.Panel1.SuspendLayout();
+            this.sptGraphDialog.Panel2.SuspendLayout();
+            this.sptGraphDialog.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabMap.SuspendLayout();
             this.tabGraph.SuspendLayout();
@@ -94,10 +100,8 @@
             this.spatialDockManager1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).BeginInit();
             this.spatialStatusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sptGraphDialog)).BeginInit();
-            this.sptGraphDialog.Panel1.SuspendLayout();
-            this.sptGraphDialog.Panel2.SuspendLayout();
-            this.sptGraphDialog.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.grpboxSampleData.SuspendLayout();
             this.SuspendLayout();
             // 
             // menLayoutMenuStrip
@@ -175,10 +179,7 @@
             // sptButtons_Legend.Panel1
             // 
             this.sptButtons_Legend.Panel1.BackColor = System.Drawing.Color.White;
-            this.sptButtons_Legend.Panel1.Controls.Add(this.btnSampleExtreme);
-            this.sptButtons_Legend.Panel1.Controls.Add(this.btnSampleExpert);
-            this.sptButtons_Legend.Panel1.Controls.Add(this.btnSampleModerate);
-            this.sptButtons_Legend.Panel1.Controls.Add(this.btnSampleEasier);
+            this.sptButtons_Legend.Panel1.Controls.Add(this.grpboxSampleData);
             this.sptButtons_Legend.Panel1.Controls.Add(this.btnGraph);
             this.sptButtons_Legend.Panel1.Controls.Add(this.btnDrawTrail);
             this.sptButtons_Legend.Panel1.Controls.Add(this.btnAddLayer);
@@ -188,62 +189,67 @@
             // 
             this.sptButtons_Legend.Panel2.Controls.Add(this.lgdMapLegend);
             this.sptButtons_Legend.Size = new System.Drawing.Size(162, 493);
-            this.sptButtons_Legend.SplitterDistance = 235;
+            this.sptButtons_Legend.SplitterDistance = 225;
             this.sptButtons_Legend.TabIndex = 0;
             // 
             // btnSampleExtreme
             // 
-            this.btnSampleExtreme.Location = new System.Drawing.Point(84, 136);
+            this.btnSampleExtreme.BackColor = System.Drawing.Color.Red;
+            this.btnSampleExtreme.Location = new System.Drawing.Point(79, 64);
             this.btnSampleExtreme.Name = "btnSampleExtreme";
-            this.btnSampleExtreme.Size = new System.Drawing.Size(68, 35);
+            this.btnSampleExtreme.Size = new System.Drawing.Size(67, 35);
             this.btnSampleExtreme.TabIndex = 6;
-            this.btnSampleExtreme.Text = "Extreme Trail Data";
-            this.btnSampleExtreme.UseVisualStyleBackColor = true;
+            this.btnSampleExtreme.Text = "Extreme";
+            this.btnSampleExtreme.UseVisualStyleBackColor = false;
             this.btnSampleExtreme.Click += new System.EventHandler(this.btnSampleExtreme_Click);
             // 
             // btnSampleExpert
             // 
-            this.btnSampleExpert.Location = new System.Drawing.Point(5, 136);
+            this.btnSampleExpert.BackColor = System.Drawing.Color.Yellow;
+            this.btnSampleExpert.Location = new System.Drawing.Point(6, 64);
             this.btnSampleExpert.Name = "btnSampleExpert";
-            this.btnSampleExpert.Size = new System.Drawing.Size(73, 35);
+            this.btnSampleExpert.Size = new System.Drawing.Size(67, 35);
             this.btnSampleExpert.TabIndex = 5;
-            this.btnSampleExpert.Text = "Expert Trail Data";
-            this.btnSampleExpert.UseVisualStyleBackColor = true;
+            this.btnSampleExpert.Text = "Expert";
+            this.btnSampleExpert.UseVisualStyleBackColor = false;
             this.btnSampleExpert.Click += new System.EventHandler(this.btnSampleExpert_Click);
             // 
             // btnSampleModerate
             // 
+            this.btnSampleModerate.BackColor = System.Drawing.Color.Blue;
             this.btnSampleModerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnSampleModerate.Location = new System.Drawing.Point(84, 95);
+            this.btnSampleModerate.Location = new System.Drawing.Point(79, 22);
             this.btnSampleModerate.Name = "btnSampleModerate";
-            this.btnSampleModerate.Size = new System.Drawing.Size(68, 35);
+            this.btnSampleModerate.Size = new System.Drawing.Size(67, 35);
             this.btnSampleModerate.TabIndex = 4;
-            this.btnSampleModerate.Text = "Moderate Trail Data";
-            this.btnSampleModerate.UseVisualStyleBackColor = true;
+            this.btnSampleModerate.Text = "Moderate";
+            this.btnSampleModerate.UseVisualStyleBackColor = false;
             this.btnSampleModerate.Click += new System.EventHandler(this.btnSampleModerate_Click);
             // 
             // btnSampleEasier
             // 
-            this.btnSampleEasier.Location = new System.Drawing.Point(5, 95);
+            this.btnSampleEasier.BackColor = System.Drawing.Color.Lime;
+            this.btnSampleEasier.Location = new System.Drawing.Point(6, 22);
             this.btnSampleEasier.Name = "btnSampleEasier";
-            this.btnSampleEasier.Size = new System.Drawing.Size(73, 35);
+            this.btnSampleEasier.Size = new System.Drawing.Size(67, 35);
             this.btnSampleEasier.TabIndex = 3;
-            this.btnSampleEasier.Text = "Easier Trail Data";
-            this.btnSampleEasier.UseVisualStyleBackColor = true;
+            this.btnSampleEasier.Text = "Easy";
+            this.btnSampleEasier.UseVisualStyleBackColor = false;
             this.btnSampleEasier.Click += new System.EventHandler(this.btnSampleEasier_Click);
             // 
             // btnGraph
             // 
-            this.btnGraph.Location = new System.Drawing.Point(5, 66);
+            this.btnGraph.Location = new System.Drawing.Point(5, 65);
             this.btnGraph.Name = "btnGraph";
             this.btnGraph.Size = new System.Drawing.Size(75, 23);
             this.btnGraph.TabIndex = 2;
             this.btnGraph.Text = "Graph Trail";
             this.btnGraph.UseVisualStyleBackColor = true;
+            this.btnGraph.Click += new System.EventHandler(this.btnGraph_Click);
             // 
             // btnDrawTrail
             // 
-            this.btnDrawTrail.Location = new System.Drawing.Point(5, 37);
+            this.btnDrawTrail.Location = new System.Drawing.Point(5, 36);
             this.btnDrawTrail.Name = "btnDrawTrail";
             this.btnDrawTrail.Size = new System.Drawing.Size(75, 23);
             this.btnDrawTrail.TabIndex = 1;
@@ -257,14 +263,14 @@
             this.btnAddLayer.Name = "btnAddLayer";
             this.btnAddLayer.Size = new System.Drawing.Size(75, 23);
             this.btnAddLayer.TabIndex = 0;
-            this.btnAddLayer.Text = "Add Trail";
+            this.btnAddLayer.Text = "Add Data";
             this.btnAddLayer.UseVisualStyleBackColor = true;
             this.btnAddLayer.Click += new System.EventHandler(this.btnAddLayer_Click);
             // 
             // lgdMapLegend
             // 
             this.lgdMapLegend.BackColor = System.Drawing.Color.White;
-            this.lgdMapLegend.ControlRectangle = new System.Drawing.Rectangle(0, 0, 162, 254);
+            this.lgdMapLegend.ControlRectangle = new System.Drawing.Rectangle(0, 0, 162, 264);
             this.lgdMapLegend.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lgdMapLegend.DocumentRectangle = new System.Drawing.Rectangle(0, 0, 187, 428);
             this.lgdMapLegend.HorizontalScrollEnabled = true;
@@ -277,7 +283,7 @@
             this.lgdMapLegend.ResetOnResize = false;
             this.lgdMapLegend.SelectionFontColor = System.Drawing.Color.Black;
             this.lgdMapLegend.SelectionHighlight = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(238)))), ((int)(((byte)(252)))));
-            this.lgdMapLegend.Size = new System.Drawing.Size(162, 254);
+            this.lgdMapLegend.Size = new System.Drawing.Size(162, 264);
             this.lgdMapLegend.TabIndex = 0;
             this.lgdMapLegend.Text = "Map Legend";
             this.lgdMapLegend.VerticalScrollEnabled = true;
@@ -384,8 +390,27 @@
             this.tabPageGraph.Text = "Graph";
             this.tabPageGraph.UseVisualStyleBackColor = true;
             // 
+            // sptGraphDialog
+            // 
+            this.sptGraphDialog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sptGraphDialog.Location = new System.Drawing.Point(3, 3);
+            this.sptGraphDialog.Name = "sptGraphDialog";
+            this.sptGraphDialog.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // sptGraphDialog.Panel1
+            // 
+            this.sptGraphDialog.Panel1.Controls.Add(this.zedGraphElevationPlot);
+            // 
+            // sptGraphDialog.Panel2
+            // 
+            this.sptGraphDialog.Panel2.Controls.Add(this.groupBox1);
+            this.sptGraphDialog.Size = new System.Drawing.Size(561, 461);
+            this.sptGraphDialog.SplitterDistance = 248;
+            this.sptGraphDialog.TabIndex = 1;
+            // 
             // zedGraphElevationPlot
             // 
+            this.zedGraphElevationPlot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.zedGraphElevationPlot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.zedGraphElevationPlot.IsShowPointValues = false;
             this.zedGraphElevationPlot.Location = new System.Drawing.Point(0, 0);
@@ -393,6 +418,88 @@
             this.zedGraphElevationPlot.PointValueFormat = "G";
             this.zedGraphElevationPlot.Size = new System.Drawing.Size(561, 248);
             this.zedGraphElevationPlot.TabIndex = 0;
+            // 
+            // lblMaxDownSlope
+            // 
+            this.lblMaxDownSlope.AutoSize = true;
+            this.lblMaxDownSlope.Location = new System.Drawing.Point(301, 95);
+            this.lblMaxDownSlope.Name = "lblMaxDownSlope";
+            this.lblMaxDownSlope.Size = new System.Drawing.Size(35, 13);
+            this.lblMaxDownSlope.TabIndex = 8;
+            this.lblMaxDownSlope.Text = "label1";
+            // 
+            // lblElevationDifference
+            // 
+            this.lblElevationDifference.AutoSize = true;
+            this.lblElevationDifference.Location = new System.Drawing.Point(301, 152);
+            this.lblElevationDifference.Name = "lblElevationDifference";
+            this.lblElevationDifference.Size = new System.Drawing.Size(130, 13);
+            this.lblElevationDifference.TabIndex = 7;
+            this.lblElevationDifference.Text = "Total Elevation Difference";
+            // 
+            // lblDistanceDown
+            // 
+            this.lblDistanceDown.AutoSize = true;
+            this.lblDistanceDown.Location = new System.Drawing.Point(34, 124);
+            this.lblDistanceDown.Name = "lblDistanceDown";
+            this.lblDistanceDown.Size = new System.Drawing.Size(125, 13);
+            this.lblDistanceDown.TabIndex = 6;
+            this.lblDistanceDown.Text = "Total Distance (Downhill)";
+            // 
+            // lblMaxUpSlope
+            // 
+            this.lblMaxUpSlope.AutoSize = true;
+            this.lblMaxUpSlope.Location = new System.Drawing.Point(301, 68);
+            this.lblMaxUpSlope.Name = "lblMaxUpSlope";
+            this.lblMaxUpSlope.Size = new System.Drawing.Size(86, 13);
+            this.lblMaxUpSlope.TabIndex = 5;
+            this.lblMaxUpSlope.Text = "Max Uphill Slope";
+            // 
+            // lblElevationClimb
+            // 
+            this.lblElevationClimb.AutoSize = true;
+            this.lblElevationClimb.Location = new System.Drawing.Point(301, 124);
+            this.lblElevationClimb.Name = "lblElevationClimb";
+            this.lblElevationClimb.Size = new System.Drawing.Size(106, 13);
+            this.lblElevationClimb.TabIndex = 4;
+            this.lblElevationClimb.Text = "Total Elevation Climb";
+            // 
+            // lblDistanceUp
+            // 
+            this.lblDistanceUp.AutoSize = true;
+            this.lblDistanceUp.Location = new System.Drawing.Point(34, 152);
+            this.lblDistanceUp.Name = "lblDistanceUp";
+            this.lblDistanceUp.Size = new System.Drawing.Size(111, 13);
+            this.lblDistanceUp.TabIndex = 3;
+            this.lblDistanceUp.Text = "Total Distance (Uphill)";
+            // 
+            // lblTotalDistance
+            // 
+            this.lblTotalDistance.AutoSize = true;
+            this.lblTotalDistance.Location = new System.Drawing.Point(34, 96);
+            this.lblTotalDistance.Name = "lblTotalDistance";
+            this.lblTotalDistance.Size = new System.Drawing.Size(76, 13);
+            this.lblTotalDistance.TabIndex = 2;
+            this.lblTotalDistance.Text = "Total Distance";
+            // 
+            // lblRating
+            // 
+            this.lblRating.AutoSize = true;
+            this.lblRating.Location = new System.Drawing.Point(34, 68);
+            this.lblRating.Name = "lblRating";
+            this.lblRating.Size = new System.Drawing.Size(38, 13);
+            this.lblRating.TabIndex = 1;
+            this.lblRating.Text = "Rating";
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblTitle.Location = new System.Drawing.Point(30, 25);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(129, 20);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Name of the Trail";
             // 
             // tabMain
             // 
@@ -501,113 +608,35 @@
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Visible = false;
             // 
-            // sptGraphDialog
+            // groupBox1
             // 
-            this.sptGraphDialog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sptGraphDialog.Location = new System.Drawing.Point(3, 3);
-            this.sptGraphDialog.Name = "sptGraphDialog";
-            this.sptGraphDialog.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.groupBox1.Controls.Add(this.lblRating);
+            this.groupBox1.Controls.Add(this.lblTotalDistance);
+            this.groupBox1.Controls.Add(this.lblDistanceUp);
+            this.groupBox1.Controls.Add(this.lblElevationClimb);
+            this.groupBox1.Controls.Add(this.lblMaxUpSlope);
+            this.groupBox1.Controls.Add(this.lblElevationDifference);
+            this.groupBox1.Controls.Add(this.lblMaxDownSlope);
+            this.groupBox1.Controls.Add(this.lblDistanceDown);
+            this.groupBox1.Controls.Add(this.lblTitle);
+            this.groupBox1.Location = new System.Drawing.Point(9, 2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(539, 200);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
             // 
-            // sptGraphDialog.Panel1
+            // grpboxSampleData
             // 
-            this.sptGraphDialog.Panel1.Controls.Add(this.zedGraphElevationPlot);
-            // 
-            // sptGraphDialog.Panel2
-            // 
-            this.sptGraphDialog.Panel2.Controls.Add(this.lblMaxDownSlope);
-            this.sptGraphDialog.Panel2.Controls.Add(this.lblElevationDifference);
-            this.sptGraphDialog.Panel2.Controls.Add(this.lblDistanceDown);
-            this.sptGraphDialog.Panel2.Controls.Add(this.lblMaxUpSlope);
-            this.sptGraphDialog.Panel2.Controls.Add(this.lblElevationClimb);
-            this.sptGraphDialog.Panel2.Controls.Add(this.lblDistanceUp);
-            this.sptGraphDialog.Panel2.Controls.Add(this.lblTotalDistance);
-            this.sptGraphDialog.Panel2.Controls.Add(this.lblRating);
-            this.sptGraphDialog.Panel2.Controls.Add(this.lblTitle);
-            this.sptGraphDialog.Size = new System.Drawing.Size(561, 461);
-            this.sptGraphDialog.SplitterDistance = 248;
-            this.sptGraphDialog.TabIndex = 1;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblTitle.Location = new System.Drawing.Point(33, 33);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(129, 20);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Name of the Trail";
-            // 
-            // lblRating
-            // 
-            this.lblRating.AutoSize = true;
-            this.lblRating.Location = new System.Drawing.Point(34, 68);
-            this.lblRating.Name = "lblRating";
-            this.lblRating.Size = new System.Drawing.Size(38, 13);
-            this.lblRating.TabIndex = 1;
-            this.lblRating.Text = "Rating";
-            // 
-            // lblTotalDistance
-            // 
-            this.lblTotalDistance.AutoSize = true;
-            this.lblTotalDistance.Location = new System.Drawing.Point(34, 96);
-            this.lblTotalDistance.Name = "lblTotalDistance";
-            this.lblTotalDistance.Size = new System.Drawing.Size(76, 13);
-            this.lblTotalDistance.TabIndex = 2;
-            this.lblTotalDistance.Text = "Total Distance";
-            // 
-            // lblDistanceUp
-            // 
-            this.lblDistanceUp.AutoSize = true;
-            this.lblDistanceUp.Location = new System.Drawing.Point(34, 152);
-            this.lblDistanceUp.Name = "lblDistanceUp";
-            this.lblDistanceUp.Size = new System.Drawing.Size(111, 13);
-            this.lblDistanceUp.TabIndex = 3;
-            this.lblDistanceUp.Text = "Total Distance (Uphill)";
-            // 
-            // lblElevationClimb
-            // 
-            this.lblElevationClimb.AutoSize = true;
-            this.lblElevationClimb.Location = new System.Drawing.Point(303, 96);
-            this.lblElevationClimb.Name = "lblElevationClimb";
-            this.lblElevationClimb.Size = new System.Drawing.Size(106, 13);
-            this.lblElevationClimb.TabIndex = 4;
-            this.lblElevationClimb.Text = "Total Elevation Climb";
-            // 
-            // lblMaxUpSlope
-            // 
-            this.lblMaxUpSlope.AutoSize = true;
-            this.lblMaxUpSlope.Location = new System.Drawing.Point(303, 40);
-            this.lblMaxUpSlope.Name = "lblMaxUpSlope";
-            this.lblMaxUpSlope.Size = new System.Drawing.Size(86, 13);
-            this.lblMaxUpSlope.TabIndex = 5;
-            this.lblMaxUpSlope.Text = "Max Uphill Slope";
-            // 
-            // lblDistanceDown
-            // 
-            this.lblDistanceDown.AutoSize = true;
-            this.lblDistanceDown.Location = new System.Drawing.Point(34, 124);
-            this.lblDistanceDown.Name = "lblDistanceDown";
-            this.lblDistanceDown.Size = new System.Drawing.Size(125, 13);
-            this.lblDistanceDown.TabIndex = 6;
-            this.lblDistanceDown.Text = "Total Distance (Downhill)";
-            // 
-            // lblElevationDifference
-            // 
-            this.lblElevationDifference.AutoSize = true;
-            this.lblElevationDifference.Location = new System.Drawing.Point(303, 124);
-            this.lblElevationDifference.Name = "lblElevationDifference";
-            this.lblElevationDifference.Size = new System.Drawing.Size(130, 13);
-            this.lblElevationDifference.TabIndex = 7;
-            this.lblElevationDifference.Text = "Total Elevation Difference";
-            // 
-            // lblMaxDownSlope
-            // 
-            this.lblMaxDownSlope.AutoSize = true;
-            this.lblMaxDownSlope.Location = new System.Drawing.Point(306, 67);
-            this.lblMaxDownSlope.Name = "lblMaxDownSlope";
-            this.lblMaxDownSlope.Size = new System.Drawing.Size(35, 13);
-            this.lblMaxDownSlope.TabIndex = 8;
-            this.lblMaxDownSlope.Text = "label1";
+            this.grpboxSampleData.Controls.Add(this.btnSampleModerate);
+            this.grpboxSampleData.Controls.Add(this.btnSampleEasier);
+            this.grpboxSampleData.Controls.Add(this.btnSampleExtreme);
+            this.grpboxSampleData.Controls.Add(this.btnSampleExpert);
+            this.grpboxSampleData.Location = new System.Drawing.Point(5, 106);
+            this.grpboxSampleData.Name = "grpboxSampleData";
+            this.grpboxSampleData.Size = new System.Drawing.Size(154, 108);
+            this.grpboxSampleData.TabIndex = 7;
+            this.grpboxSampleData.TabStop = false;
+            this.grpboxSampleData.Text = "Sample Trail Data";
             // 
             // frmBikeAnalyzer2K15
             // 
@@ -636,6 +665,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPageMap.ResumeLayout(false);
             this.tabPageGraph.ResumeLayout(false);
+            this.sptGraphDialog.Panel1.ResumeLayout(false);
+            this.sptGraphDialog.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.sptGraphDialog)).EndInit();
+            this.sptGraphDialog.ResumeLayout(false);
             this.tabMain.ResumeLayout(false);
             this.tabMap.ResumeLayout(false);
             this.tabGraph.ResumeLayout(false);
@@ -644,11 +677,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).EndInit();
             this.spatialStatusStrip1.ResumeLayout(false);
             this.spatialStatusStrip1.PerformLayout();
-            this.sptGraphDialog.Panel1.ResumeLayout(false);
-            this.sptGraphDialog.Panel2.ResumeLayout(false);
-            this.sptGraphDialog.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sptGraphDialog)).EndInit();
-            this.sptGraphDialog.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.grpboxSampleData.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -702,6 +733,8 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblElevationDifference;
         private System.Windows.Forms.Label lblMaxDownSlope;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpboxSampleData;
     }
 }
 

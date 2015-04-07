@@ -19,8 +19,9 @@ namespace TrailAnalyzer2K15
 {
     public partial class frmBikeAnalyzer2K15 : Form
     {
-
+        #region Variables
         bool amDigitizing = false;
+        bool firstPoint = true;
         List<Coordinate> drawPointsList = new List<Coordinate>();
         string name;
         MapLineLayer linelyr;
@@ -29,7 +30,8 @@ namespace TrailAnalyzer2K15
         //private MapRasterLayer MyRasterLayer;
         //private MapLineLayer MySampleLine;
         private List<Coordinate> MyExtractedPoints = new List<Coordinate>();
-        
+        #endregion
+
         public frmBikeAnalyzer2K15()
         {
             InitializeComponent();
@@ -114,6 +116,10 @@ namespace TrailAnalyzer2K15
             double TempElevSlope = 0;
             double UphillDistance= 0, UphillTotalClimb = 0, ElevationDifference = 0, MaxUphillSlope = 0;
             double DownhillDistance = 0, MaxDownhillSlope = 0;
+            string difficultyLevel = "";
+
+
+
 
             // Stepping through all the vertices in the polyline
             for (int j = 0; j < NumPointsCoordinates; j++) 
@@ -172,9 +178,11 @@ namespace TrailAnalyzer2K15
             MaxUphillSlope = ElevSlope.Max();
             MaxDownhillSlope = ElevSlope.Min();
 
+            
+
             // Now we need to plot to the ZedGraph
             // GraphPane object holds one or more Curve objects (or plots)
-            GraphPane myPane1 = zedGraphElevationPlot.GraphPane;
+            GraphPane myPane1 =  zedGraphElevationPlot.GraphPane;
             // Need a pointpair list to hold the plot values
             PointPairList XandY = new PointPairList(plotX, plotY);
             // Add curves to myPane1 object
@@ -183,17 +191,154 @@ namespace TrailAnalyzer2K15
             myCurve.Line.Width = 3.0F;
             //End of editing ZedGraph here, finish it somewhere else
 
-            //Fill out the Dialog Rating Labels
-            lblRating.Text = "Rating: TBA";
-            lblTotalDistance.Text = "Total Distance: " + Convert.ToString(Math.Round(TotalLength,0));
-            lblDistanceUp.Text = "Total Distance (Uphill): " + Convert.ToString(Math.Round(UphillDistance,0));
-            lblDistanceDown.Text = "Total Distance (Downhill): " + Convert.ToString(Math.Round(DownhillDistance,0));
-            lblMaxUpSlope.Text = "Max Uphill Slope: " + Convert.ToString(Math.Round(MaxUphillSlope,2));
-            lblElevationClimb.Text = "Cummulative Elevation Climb: " + Convert.ToString(Math.Round(UphillTotalClimb,0));
-            lblElevationDifference.Text = "Max Elevation Difference: " + Convert.ToString(Math.Round(ElevationDifference,0));
-            lblMaxDownSlope.Text = "Max Downhill Slope: " + Convert.ToString(Math.Round(MaxDownhillSlope, 2));
-        }
+            #region Algorithm
+            //algorithm Variables
+            int slopeA = 0; int slopeB = 0; int slopeC = 0; int slopeD = 0; int slopeE = 0;
+            double percentSlopeA = 0;
+            double percentSlopeB = 0;
+            double percentSlopeC = 0;
+            double percentSlopeD = 0;
+            double percentSlopeE = 0;
 
+            int elevClimb = 0;
+            int distance = 0;
+            int maxSlope = 0;
+            int slopeD_weight = 0;
+            int slopeE_weight = 0;
+
+            int totalDifficulty = 0;
+
+            //count how many sections are in each slope range
+            foreach (double slope1 in ElevSlope)
+            {
+                if (slope1 < 0)
+                {
+                    slopeA += 1;
+                }
+                else if (slope1 >= 0 & slope1 < 0.1)
+                {
+                    slopeB += 1;
+                }
+                else if (slope1 >= 0.1 & slope1 < 0.3)
+                {
+                    slopeC += 1;
+                }
+                else if (slope1 >= 0.3 & slope1 < 0.4)
+                {
+                    slopeD += 1;
+                }
+                else if (slope1 >= 0.4)
+                {
+                    slopeE += 1;
+                }
+
+            }
+
+            int numSlopePoints = slopeA + slopeB + slopeC + slopeD + slopeE;
+            //calculate the percentage that each slope occurs
+            percentSlopeA = (double)slopeA / (double)numSlopePoints * 100;
+            percentSlopeB = (double)slopeB / (double)numSlopePoints * 100;
+            percentSlopeC = (double)slopeC / (double)numSlopePoints * 100;
+            percentSlopeD = (double)slopeD / (double)numSlopePoints * 100;
+            percentSlopeE = (double)slopeE / (double)numSlopePoints * 100;
+
+
+
+            if (percentSlopeD > 1)
+            {slopeD_weight += 1;
+                if (percentSlopeD > 4)
+                { slopeD_weight += 1;
+                    if (percentSlopeD > 7)
+                    { slopeD_weight += 1;
+                        if (percentSlopeD > 10)
+                        { slopeD_weight += 1; }
+                    }
+                }
+            }
+
+            if (percentSlopeE > 1)
+            { slopeE_weight += 1;
+                if (percentSlopeE > 3)
+                { slopeE_weight += 2;
+                    if (percentSlopeE > 5)
+                    {slopeE_weight += 2;
+                        if (percentSlopeE > 7)
+                        { slopeE_weight += 1; }
+                    }
+                }
+            }
+
+            if (MaxUphillSlope > 0)
+            { maxSlope += 1;              
+                  if (MaxUphillSlope > .2)
+                  { maxSlope += 1;                     
+                      if (MaxUphillSlope > .4)
+                      { maxSlope += 1;
+                        if (MaxUphillSlope > .5)
+                        { maxSlope += 1;}                                                                        
+                      }
+                  }
+             }
+
+            if (TotalLength > 4000)
+            {distance += 1;
+                if (TotalLength > 4500)
+                {distance += 1;
+                    if (TotalLength > 5500)
+                    { distance += 1;
+                        if (TotalLength > 7000)
+                        { distance += 1; }
+                    }
+                 }
+             }
+
+            if (UphillTotalClimb > 100)
+            { elevClimb += 1;
+                if (UphillTotalClimb > 250)
+                { elevClimb += 1;
+                    if (UphillTotalClimb > 450)
+                    { elevClimb += 1;
+                        if (UphillTotalClimb > 700)
+                        { elevClimb += 2; }
+                    }
+                }
+            }
+            //sum each factor of difficulty
+            totalDifficulty = elevClimb + distance + maxSlope + slopeD_weight + slopeE_weight;
+
+            //determine difficulty level
+            if (totalDifficulty <= 5)
+            {
+                difficultyLevel = "Easy";
+            }
+            if (totalDifficulty > 5 & totalDifficulty <= 12)
+            {
+                difficultyLevel = "Moderate";
+            }
+            if (totalDifficulty > 12 & totalDifficulty <= 19)
+            {
+                difficultyLevel = "Difficult";
+            }
+            if (totalDifficulty > 19)
+            {
+                difficultyLevel = "Extreme";
+            }
+            #endregion
+
+            //Fill out the Dialog Rating Labels
+            lblRating.Text = "Physical Difficulty: " + difficultyLevel;
+            lblTotalDistance.Text = "Distance: " + Convert.ToString(Math.Round(TotalLength, 0)) + " m";
+            lblDistanceUp.Text = "Distance (Uphill): " + Convert.ToString(Math.Round(UphillDistance,0)) + " m";
+            lblDistanceDown.Text = "Distance (Downhill): " + Convert.ToString(Math.Round(DownhillDistance, 0)) + " m";
+            lblMaxUpSlope.Text = "Max Uphill Slope: " + Convert.ToString(Math.Round(MaxUphillSlope,2));
+            lblElevationClimb.Text = "Cummulative Elevation Climb: " + Convert.ToString(Math.Round(UphillTotalClimb, 0)) + " m";
+            lblElevationDifference.Text = "Max Elevation Difference: " + Convert.ToString(Math.Round(ElevationDifference, 0)) + " m";
+            lblMaxDownSlope.Text = "Max Downhill Slope: " + Convert.ToString(Math.Round(MaxDownhillSlope, 2));
+            
+            
+            
+        }
+            
         //Button controls for interacting with the map
         private void btnDrawTrail_Click(object sender, EventArgs e)
         {
@@ -305,6 +450,12 @@ namespace TrailAnalyzer2K15
             //digitizing polyline
             if (amDigitizing == true)
             {
+                if (firstPoint == true)
+                {
+                    drawPointsList.Clear();
+                    firstPoint = false;
+                }
+
                 Coordinate c = new Coordinate();
                 System.Drawing.Point p = new System.Drawing.Point();
                 p.X = e.X;
@@ -332,10 +483,12 @@ namespace TrailAnalyzer2K15
                     if ((c.X / c1.X) < 0.05)   //ensures an intentional double click
                     {
                         drawPointsList.Add(c);
+                        firstPoint = true;
                     }
                 }
 
                 amDigitizing = false;
+                firstPoint = true;
 
                 //show the line being drawn by user in the legend
                 var list = mapMain.Layers.Where(item => item.LegendText == "Drawing Trail");
@@ -355,6 +508,9 @@ namespace TrailAnalyzer2K15
                 FeatureSet fs = new FeatureSet();
                 fs.Projection = mapMain.Projection;
                 fs.AddFeature(f);
+
+                //clears list for next line
+                //drawPointsList.Clear();
 
                 //allow user to save shapefile
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -389,6 +545,7 @@ namespace TrailAnalyzer2K15
         private void btnDrawTrail_Click_1(object sender, EventArgs e)
         {
             amDigitizing = true;
+            
         }
 
         private void btnSampleModerate_Click(object sender, EventArgs e)
@@ -515,6 +672,57 @@ namespace TrailAnalyzer2K15
                 mapMain.Layers.Remove(MyRasterLayer);
                 mapMain.Layers.Remove(MySampleLine);
             }
+
+            catch
+            {
+                // Do Nothing
+            }
+
+            // Load in the sample data, background data first
+            // 1) Load in raster first
+            MyRasterLayer = mapMain.Layers.Add(Raster.Open("..\\data\\Sample_Extreme\\ned_extreme\\prj.adf"));
+            MyRasterLayer.LegendText = "NED10_Extreme_Raster";
+            mapMain.ZoomToMaxExtent();
+            // 2) Load in shapefile after, so that it is seen above the raster in the map and legend
+            MySampleLine = mapMain.Layers.Add(Shapefile.Open("..\\data\\Sample_Extreme\\SampleTrail_Extreme.shp"));
+            MySampleLine.LegendText = "SampleTrail_Extreme";
+
+            // End Analysis of sample data, Add data to Plot
+
+            // This is to remove all plots
+            zedGraphElevationPlot.GraphPane.CurveList.Clear();
+
+            // Here we will need to do a sample analysis of the data
+            AnalyzeTrailHardness(MyRasterLayer, MySampleLine);
+
+            // End of Adding Data to plot
+
+            // GraphPane object holds one or more Curve objects (or plots)
+            GraphPane myPane = zedGraphElevationPlot.GraphPane;
+
+            // Change the title, x-axis, and y-axis text for the Extreme sample data
+            myPane.Title = "Sample: Extreme Trail";
+            myPane.XAxis.Title = "Total Distance [m]";
+            myPane.YAxis.Title = "Elevation [m]";
+
+            // Refreshing the plot
+            zedGraphElevationPlot.AxisChange();
+            zedGraphElevationPlot.Invalidate();
+            zedGraphElevationPlot.Refresh();
+
+            // Show the graph now by changing the tab index from 0 (Map) to 1 (Graph)
+            tabControl1.SelectedIndex = 1;
+        }
+
+        private void btnGraph_Click(object sender, EventArgs e)
+        {
+            // Delete Previous Layers if already there, using a try-catch reference
+            try
+            {
+                mapMain.Layers.Remove(MyRasterLayer);
+                mapMain.Layers.Remove(MySampleLine);
+            }
+
             catch
             {
                 // Do Nothing
