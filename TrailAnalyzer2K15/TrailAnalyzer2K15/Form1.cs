@@ -179,7 +179,7 @@ namespace TrailAnalyzer2K15
             PointPairList XandY = new PointPairList(plotX, plotY);
             // Add curves to myPane1 object
             LineItem myCurve = myPane1.AddCurve("Cross Section", XandY, Color.ForestGreen, ZedGraph.SymbolType.None);
-            myCurve.Line.Fill = new Fill(Color.White, Color.Blue, Color.Black);
+            myCurve.Line.Fill = new Fill(Color.LightBlue, Color.Blue, Color.Navy);
             myCurve.Line.Width = 3.0F;
             //End of editing ZedGraph here, finish it somewhere else
 
@@ -289,6 +289,7 @@ namespace TrailAnalyzer2K15
             myPane.Title = "Sample: Easier Trail";
             myPane.XAxis.Title = "Total Distance [m]";
             myPane.YAxis.Title = "Elevation [m]";
+            lblTitle.Text = "Easier Trail";
 
             // Refreshing the plot
             zedGraphElevationPlot.AxisChange();
@@ -441,6 +442,7 @@ namespace TrailAnalyzer2K15
             zedGraphElevationPlot.AxisChange();
             zedGraphElevationPlot.Invalidate();
             zedGraphElevationPlot.Refresh();
+            lblTitle.Text = "Moderate Trail";
 
             // Show the graph now by changing the tab index from 0 (Map) to 1 (Graph)
             tabControl1.SelectedIndex = 1;
@@ -496,6 +498,7 @@ namespace TrailAnalyzer2K15
             zedGraphElevationPlot.AxisChange();
             zedGraphElevationPlot.Invalidate();
             zedGraphElevationPlot.Refresh();
+            lblTitle.Text = "Expert Trail";
 
             // Show the graph now by changing the tab index from 0 (Map) to 1 (Graph)
             tabControl1.SelectedIndex = 1;
@@ -546,6 +549,7 @@ namespace TrailAnalyzer2K15
             myPane.Title = "Sample: Extreme Trail";
             myPane.XAxis.Title = "Total Distance [m]";
             myPane.YAxis.Title = "Elevation [m]";
+            lblTitle.Text = "Extreme Trail";
 
             // Refreshing the plot
             zedGraphElevationPlot.AxisChange();
