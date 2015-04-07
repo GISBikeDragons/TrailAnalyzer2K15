@@ -65,6 +65,16 @@
             this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sptGraphDialog = new System.Windows.Forms.SplitContainer();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.lblRating = new System.Windows.Forms.Label();
+            this.lblTotalDistance = new System.Windows.Forms.Label();
+            this.lblDistanceUp = new System.Windows.Forms.Label();
+            this.lblElevationClimb = new System.Windows.Forms.Label();
+            this.lblMaxUpSlope = new System.Windows.Forms.Label();
+            this.lblDistanceDown = new System.Windows.Forms.Label();
+            this.lblElevationDifference = new System.Windows.Forms.Label();
+            this.lblMaxDownSlope = new System.Windows.Forms.Label();
             this.menLayoutMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sptInterface_Map)).BeginInit();
             this.sptInterface_Map.Panel1.SuspendLayout();
@@ -84,6 +94,10 @@
             this.spatialDockManager1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).BeginInit();
             this.spatialStatusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sptGraphDialog)).BeginInit();
+            this.sptGraphDialog.Panel1.SuspendLayout();
+            this.sptGraphDialog.Panel2.SuspendLayout();
+            this.sptGraphDialog.SuspendLayout();
             this.SuspendLayout();
             // 
             // menLayoutMenuStrip
@@ -361,7 +375,7 @@
             // 
             // tabPageGraph
             // 
-            this.tabPageGraph.Controls.Add(this.zedGraphElevationPlot);
+            this.tabPageGraph.Controls.Add(this.sptGraphDialog);
             this.tabPageGraph.Location = new System.Drawing.Point(4, 4);
             this.tabPageGraph.Name = "tabPageGraph";
             this.tabPageGraph.Padding = new System.Windows.Forms.Padding(3);
@@ -374,10 +388,10 @@
             // 
             this.zedGraphElevationPlot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.zedGraphElevationPlot.IsShowPointValues = false;
-            this.zedGraphElevationPlot.Location = new System.Drawing.Point(3, 3);
+            this.zedGraphElevationPlot.Location = new System.Drawing.Point(0, 0);
             this.zedGraphElevationPlot.Name = "zedGraphElevationPlot";
             this.zedGraphElevationPlot.PointValueFormat = "G";
-            this.zedGraphElevationPlot.Size = new System.Drawing.Size(561, 461);
+            this.zedGraphElevationPlot.Size = new System.Drawing.Size(561, 248);
             this.zedGraphElevationPlot.TabIndex = 0;
             // 
             // tabMain
@@ -487,6 +501,114 @@
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Visible = false;
             // 
+            // sptGraphDialog
+            // 
+            this.sptGraphDialog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sptGraphDialog.Location = new System.Drawing.Point(3, 3);
+            this.sptGraphDialog.Name = "sptGraphDialog";
+            this.sptGraphDialog.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // sptGraphDialog.Panel1
+            // 
+            this.sptGraphDialog.Panel1.Controls.Add(this.zedGraphElevationPlot);
+            // 
+            // sptGraphDialog.Panel2
+            // 
+            this.sptGraphDialog.Panel2.Controls.Add(this.lblMaxDownSlope);
+            this.sptGraphDialog.Panel2.Controls.Add(this.lblElevationDifference);
+            this.sptGraphDialog.Panel2.Controls.Add(this.lblDistanceDown);
+            this.sptGraphDialog.Panel2.Controls.Add(this.lblMaxUpSlope);
+            this.sptGraphDialog.Panel2.Controls.Add(this.lblElevationClimb);
+            this.sptGraphDialog.Panel2.Controls.Add(this.lblDistanceUp);
+            this.sptGraphDialog.Panel2.Controls.Add(this.lblTotalDistance);
+            this.sptGraphDialog.Panel2.Controls.Add(this.lblRating);
+            this.sptGraphDialog.Panel2.Controls.Add(this.lblTitle);
+            this.sptGraphDialog.Size = new System.Drawing.Size(561, 461);
+            this.sptGraphDialog.SplitterDistance = 248;
+            this.sptGraphDialog.TabIndex = 1;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblTitle.Location = new System.Drawing.Point(33, 33);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(129, 20);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Name of the Trail";
+            // 
+            // lblRating
+            // 
+            this.lblRating.AutoSize = true;
+            this.lblRating.Location = new System.Drawing.Point(34, 68);
+            this.lblRating.Name = "lblRating";
+            this.lblRating.Size = new System.Drawing.Size(38, 13);
+            this.lblRating.TabIndex = 1;
+            this.lblRating.Text = "Rating";
+            // 
+            // lblTotalDistance
+            // 
+            this.lblTotalDistance.AutoSize = true;
+            this.lblTotalDistance.Location = new System.Drawing.Point(34, 96);
+            this.lblTotalDistance.Name = "lblTotalDistance";
+            this.lblTotalDistance.Size = new System.Drawing.Size(76, 13);
+            this.lblTotalDistance.TabIndex = 2;
+            this.lblTotalDistance.Text = "Total Distance";
+            // 
+            // lblDistanceUp
+            // 
+            this.lblDistanceUp.AutoSize = true;
+            this.lblDistanceUp.Location = new System.Drawing.Point(34, 152);
+            this.lblDistanceUp.Name = "lblDistanceUp";
+            this.lblDistanceUp.Size = new System.Drawing.Size(111, 13);
+            this.lblDistanceUp.TabIndex = 3;
+            this.lblDistanceUp.Text = "Total Distance (Uphill)";
+            // 
+            // lblElevationClimb
+            // 
+            this.lblElevationClimb.AutoSize = true;
+            this.lblElevationClimb.Location = new System.Drawing.Point(303, 96);
+            this.lblElevationClimb.Name = "lblElevationClimb";
+            this.lblElevationClimb.Size = new System.Drawing.Size(106, 13);
+            this.lblElevationClimb.TabIndex = 4;
+            this.lblElevationClimb.Text = "Total Elevation Climb";
+            // 
+            // lblMaxUpSlope
+            // 
+            this.lblMaxUpSlope.AutoSize = true;
+            this.lblMaxUpSlope.Location = new System.Drawing.Point(303, 40);
+            this.lblMaxUpSlope.Name = "lblMaxUpSlope";
+            this.lblMaxUpSlope.Size = new System.Drawing.Size(86, 13);
+            this.lblMaxUpSlope.TabIndex = 5;
+            this.lblMaxUpSlope.Text = "Max Uphill Slope";
+            // 
+            // lblDistanceDown
+            // 
+            this.lblDistanceDown.AutoSize = true;
+            this.lblDistanceDown.Location = new System.Drawing.Point(34, 124);
+            this.lblDistanceDown.Name = "lblDistanceDown";
+            this.lblDistanceDown.Size = new System.Drawing.Size(125, 13);
+            this.lblDistanceDown.TabIndex = 6;
+            this.lblDistanceDown.Text = "Total Distance (Downhill)";
+            // 
+            // lblElevationDifference
+            // 
+            this.lblElevationDifference.AutoSize = true;
+            this.lblElevationDifference.Location = new System.Drawing.Point(303, 124);
+            this.lblElevationDifference.Name = "lblElevationDifference";
+            this.lblElevationDifference.Size = new System.Drawing.Size(130, 13);
+            this.lblElevationDifference.TabIndex = 7;
+            this.lblElevationDifference.Text = "Total Elevation Difference";
+            // 
+            // lblMaxDownSlope
+            // 
+            this.lblMaxDownSlope.AutoSize = true;
+            this.lblMaxDownSlope.Location = new System.Drawing.Point(306, 67);
+            this.lblMaxDownSlope.Name = "lblMaxDownSlope";
+            this.lblMaxDownSlope.Size = new System.Drawing.Size(35, 13);
+            this.lblMaxDownSlope.TabIndex = 8;
+            this.lblMaxDownSlope.Text = "label1";
+            // 
             // frmBikeAnalyzer2K15
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -522,6 +644,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).EndInit();
             this.spatialStatusStrip1.ResumeLayout(false);
             this.spatialStatusStrip1.PerformLayout();
+            this.sptGraphDialog.Panel1.ResumeLayout(false);
+            this.sptGraphDialog.Panel2.ResumeLayout(false);
+            this.sptGraphDialog.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sptGraphDialog)).EndInit();
+            this.sptGraphDialog.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -565,6 +692,16 @@
         private System.Windows.Forms.Button btnSampleExpert;
         private System.Windows.Forms.Button btnSampleModerate;
         private System.Windows.Forms.Button btnSampleEasier;
+        private System.Windows.Forms.SplitContainer sptGraphDialog;
+        private System.Windows.Forms.Label lblDistanceDown;
+        private System.Windows.Forms.Label lblMaxUpSlope;
+        private System.Windows.Forms.Label lblElevationClimb;
+        private System.Windows.Forms.Label lblDistanceUp;
+        private System.Windows.Forms.Label lblTotalDistance;
+        private System.Windows.Forms.Label lblRating;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblElevationDifference;
+        private System.Windows.Forms.Label lblMaxDownSlope;
     }
 }
 

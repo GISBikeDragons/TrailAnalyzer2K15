@@ -26,8 +26,10 @@ namespace TrailAnalyzer2K15
         MapLineLayer linelyr;
         private IMapRasterLayer MyRasterLayer;
         private IMapFeatureLayer MySampleLine;
+        //private MapRasterLayer MyRasterLayer;
+        //private MapLineLayer MySampleLine;
         private List<Coordinate> MyExtractedPoints = new List<Coordinate>();
-
+        
         public frmBikeAnalyzer2K15()
         {
             InitializeComponent();
@@ -35,10 +37,11 @@ namespace TrailAnalyzer2K15
         }
 
         //program for analyzing the trail, at least trying
-        private void AnalyzeTrailHardness(MapRasterLayer InputRas, MapLineLayer InputShp)
+        private void AnalyzeTrailHardness(IMapRasterLayer InputRas, IMapFeatureLayer InputShp)
         {
             // Creating a temporary coordinate object to us in our loop below
             Coordinate TempCord;
+            MyExtractedPoints.Clear(); // Needs to clear each time so we don't keep the previous graph
 
             // Get the number of points in our polyline
             int NumberOfPoints = InputShp.DataSet.Features[0].NumPoints;
@@ -89,9 +92,106 @@ namespace TrailAnalyzer2K15
                         TempCord.Z = newz;
                         MyExtractedPoints.Add(TempCord);
                     }
-                    //now we need to analyze the list of elevations and coordinates
+                    //End While
                 }
+                //end first IF ELSE
             }
+            //end first loop
+
+            //now we need to analyze the list of elevations and coordinates
+            //loop through MyExtractedPoints to find distance and slope of each point
+                    
+            // Get the number of points in our coordinate list
+            int NumPointsCoordinates = MyExtractedPoints.Count;
+
+            // Need a list of hypotenues, elevation differences, etc...
+            double[] plotX = new double[NumPointsCoordinates];
+            double[] plotY = new double[NumPointsCoordinates];
+            double[] ElevSlope = new double[NumPointsCoordinates];
+            double x3 = 0, y3 = 0, x4 = 0, y4 = 0, dx34 = 0, dy34 = 0;
+            double z3 = 0, z4 = 0, dz34 = 0;
+            double hyp = 0, TotalLength = 0;
+            double TempElevSlope = 0;
+            double UphillDistance= 0, UphillTotalClimb = 0, ElevationDifference = 0, MaxUphillSlope = 0;
+            double DownhillDistance = 0, MaxDownhillSlope = 0;
+
+            // Stepping through all the vertices in the polyline
+            for (int j = 0; j < NumPointsCoordinates; j++) 
+            {
+                // For the first loop, only set some parameters up
+                if (j == 0)
+                {
+                    x4 = MyExtractedPoints[j].X;
+                    y4 = MyExtractedPoints[j].Y;
+                    z4 = MyExtractedPoints[j].Z;
+                    plotX[j] = TotalLength;
+                    plotY[j] = z4;
+                }
+                // For the rest of the loop, we can do some calculations!
+                else
+                { 
+                    // Set the new '3' to the previous coordinate
+                    x3 = x4;
+                    y3 = y4;
+                    z3 = z4;
+                    // Find the next coordinate for the '4'
+                    x4 = MyExtractedPoints[j].X;
+                    y4 = MyExtractedPoints[j].Y;
+                    z4 = MyExtractedPoints[j].Z;
+                    // Now find the relative distances and elevation slope
+                    dx34 = Math.Abs(x3 - x4);
+                    dy34 = Math.Abs(y3 - y4);
+                    dz34 = z4 - z3; //order matters here, going from 3 to 4, so if elevation is up (+) then we need to do z4-z3 :)
+                    // Find hyp and add to plot x for plotting on the ZedGraph
+                    hyp = Math.Sqrt(Math.Pow(dx34, 2) + Math.Pow(dy34, 2));
+                    TotalLength = TotalLength + hyp;
+                    plotX[j] = TotalLength;
+                    // Find elev and add to plot y for plotting on the ZedGraph
+                    plotY[j] = z4;
+                    // Calculating TempElevSlope and add to the list ElevSlope
+                    TempElevSlope = dz34 / hyp;
+                    ElevSlope[j] = TempElevSlope;
+                    // Find Total Distance Uphill and Climb Uphill if dz34 is postive, else it's downhill and find that total
+                    if (dz34 >= 0)
+                    {
+                        UphillDistance = UphillDistance + hyp;
+                        UphillTotalClimb = UphillTotalClimb + dz34;
+                    }
+                    else 
+                    {
+                        DownhillDistance = DownhillDistance + hyp;
+                    }
+                    //end ifstatement
+                }
+                //End if statement
+            }
+            // End for loop for plotx,ploty,andElevSlope lists
+
+            // Time to finish up our calculations
+            ElevationDifference = plotY.Max() - plotY.Min();
+            MaxUphillSlope = ElevSlope.Max();
+            MaxDownhillSlope = ElevSlope.Min();
+
+            // Now we need to plot to the ZedGraph
+            // GraphPane object holds one or more Curve objects (or plots)
+            GraphPane myPane1 = zedGraphElevationPlot.GraphPane;
+            // Need a pointpair list to hold the plot values
+            PointPairList XandY = new PointPairList(plotX, plotY);
+            // Add curves to myPane1 object
+            LineItem myCurve = myPane1.AddCurve("Cross Section", XandY, Color.ForestGreen, ZedGraph.SymbolType.None);
+            myCurve.Line.Fill = new Fill(Color.White, Color.Blue, Color.Black);
+            myCurve.Line.Width = 3.0F;
+            //End of editing ZedGraph here, finish it somewhere else
+
+            //Fill out the Dialog Rating Labels
+            lblRating.Text = "Rating: TBA";
+            lblTotalDistance.Text = "Total Distance: " + Convert.ToString(Math.Round(TotalLength,0));
+            lblDistanceUp.Text = "Total Distance (Uphill): " + Convert.ToString(Math.Round(UphillDistance,0));
+            lblDistanceDown.Text = "Total Distance (Downhill): " + Convert.ToString(Math.Round(DownhillDistance,0));
+            lblMaxUpSlope.Text = "Max Uphill Slope: " + Convert.ToString(Math.Round(MaxUphillSlope,2));
+            lblElevationClimb.Text = "Cummulative Elevation Climb: " + Convert.ToString(Math.Round(UphillTotalClimb,0));
+            lblElevationDifference.Text = "Max Elevation Difference: " + Convert.ToString(Math.Round(ElevationDifference,0));
+            lblMaxDownSlope.Text = "Max Downhill Slope: " + Convert.ToString(Math.Round(MaxDownhillSlope, 2));
         }
 
         //Button controls for interacting with the map
@@ -160,6 +260,7 @@ namespace TrailAnalyzer2K15
 
             // Load in the sample data, background data first
             // 1) Load in raster first
+            
             MyRasterLayer = mapMain.Layers.Add(Raster.Open("..\\data\\Sample_Easier\\ned_easier\\prj.adf"));
             MyRasterLayer.LegendText = "NED10_Easier_Raster";
             mapMain.ZoomToMaxExtent();
@@ -167,20 +268,22 @@ namespace TrailAnalyzer2K15
             MySampleLine = mapMain.Layers.Add(Shapefile.Open("..\\data\\Sample_Easier\\SampleTrail_Easier.shp"));
             MySampleLine.LegendText = "SampleTrail_Easier";
             
-            // Here we will need to do a sample analysis of the data
-
-                /* */
-
             // End Analysis of sample data, Add data to Plot
-
-            // This is to remove all plots
-            zedGraphElevationPlot.GraphPane.CurveList.Clear();
-                /* */
-
-            // End of Adding Data to plot
-
+            
             // GraphPane object holds one or more Curve objects (or plots)
             GraphPane myPane = zedGraphElevationPlot.GraphPane;
+
+            // This is to remove all plots
+            try
+            {
+                myPane.CurveList.Clear();
+            }
+            catch { }
+            
+            // Here we will need to do a sample analysis of the data
+            AnalyzeTrailHardness(MyRasterLayer, MySampleLine);
+
+            // End of Adding Data to plot
 
             // Change the title, x-axis, and y-axis text for the easier sample data
             myPane.Title = "Sample: Easier Trail";
@@ -316,15 +419,13 @@ namespace TrailAnalyzer2K15
             MySampleLine = mapMain.Layers.Add(Shapefile.Open("..\\data\\Sample_Moderate\\SampleTrail_Moderate.shp"));
             MySampleLine.LegendText = "SampleTrail_Moderate";
 
-            // Here we will need to do a sample analysis of the data
-
-            /* */
-
             // End Analysis of sample data, Add data to Plot
 
             // This is to remove all plots
             zedGraphElevationPlot.GraphPane.CurveList.Clear();
-            /* */
+
+            // Here we will need to do a sample analysis of the data
+            AnalyzeTrailHardness(MyRasterLayer, MySampleLine);
 
             // End of Adding Data to plot
 
@@ -373,15 +474,13 @@ namespace TrailAnalyzer2K15
             MySampleLine = mapMain.Layers.Add(Shapefile.Open("..\\data\\Sample_Expert\\SampleTrail_Expert.shp"));
             MySampleLine.LegendText = "SampleTrail_Expert";
 
-            // Here we will need to do a sample analysis of the data
-
-            /* */
-
             // End Analysis of sample data, Add data to Plot
 
             // This is to remove all plots
             zedGraphElevationPlot.GraphPane.CurveList.Clear();
-            /* */
+
+            // Here we will need to do a sample analysis of the data
+            AnalyzeTrailHardness(MyRasterLayer, MySampleLine);
 
             // End of Adding Data to plot
 
@@ -430,15 +529,13 @@ namespace TrailAnalyzer2K15
             MySampleLine = mapMain.Layers.Add(Shapefile.Open("..\\data\\Sample_Extreme\\SampleTrail_Extreme.shp"));
             MySampleLine.LegendText = "SampleTrail_Extreme";
 
-            // Here we will need to do a sample analysis of the data
-
-            /* */
-
             // End Analysis of sample data, Add data to Plot
 
             // This is to remove all plots
             zedGraphElevationPlot.GraphPane.CurveList.Clear();
-            /* */
+
+            // Here we will need to do a sample analysis of the data
+            AnalyzeTrailHardness(MyRasterLayer, MySampleLine);
 
             // End of Adding Data to plot
 
