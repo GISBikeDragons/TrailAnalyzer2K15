@@ -41,6 +41,7 @@ namespace TrailAnalyzer2K15
         //program for analyzing the trail, at least trying
         private void AnalyzeTrailHardness(IMapRasterLayer InputRas, IMapFeatureLayer InputShp)
         {
+            #region FindTrailElevations
             // Creating a temporary coordinate object to us in our loop below
             Coordinate TempCord;
             MyExtractedPoints.Clear(); // Needs to clear each time so we don't keep the previous graph
@@ -99,7 +100,9 @@ namespace TrailAnalyzer2K15
                 //end first IF ELSE
             }
             //end first loop
+            #endregion
 
+            #region CalculatingPlots
             //now we need to analyze the list of elevations and coordinates
             //loop through MyExtractedPoints to find distance and slope of each point
                     
@@ -117,10 +120,7 @@ namespace TrailAnalyzer2K15
             double UphillDistance= 0, UphillTotalClimb = 0, ElevationDifference = 0, MaxUphillSlope = 0;
             double DownhillDistance = 0, MaxDownhillSlope = 0;
             string difficultyLevel = "";
-
-
-
-
+            
             // Stepping through all the vertices in the polyline
             for (int j = 0; j < NumPointsCoordinates; j++) 
             {
@@ -177,9 +177,9 @@ namespace TrailAnalyzer2K15
             ElevationDifference = plotY.Max() - plotY.Min();
             MaxUphillSlope = ElevSlope.Max();
             MaxDownhillSlope = ElevSlope.Min();
+            #endregion
 
-            
-
+            #region PlotZedGraphCurve
             // Now we need to plot to the ZedGraph
             // GraphPane object holds one or more Curve objects (or plots)
             GraphPane myPane1 =  zedGraphElevationPlot.GraphPane;
@@ -190,6 +190,7 @@ namespace TrailAnalyzer2K15
             myCurve.Line.Fill = new Fill(Color.LightBlue, Color.Blue, Color.Navy);
             myCurve.Line.Width = 3.0F;
             //End of editing ZedGraph here, finish it somewhere else
+            #endregion
 
             #region Algorithm
             //algorithm Variables
@@ -325,6 +326,7 @@ namespace TrailAnalyzer2K15
             }
             #endregion
 
+            #region DialogRatingLabels
             //Fill out the Dialog Rating Labels
             lblRating.Text = "Physical Difficulty: " + difficultyLevel;
             lblTotalDistance.Text = "Distance: " + Convert.ToString(Math.Round(TotalLength, 0)) + " m";
@@ -334,23 +336,13 @@ namespace TrailAnalyzer2K15
             lblElevationClimb.Text = "Cummulative Elevation Climb: " + Convert.ToString(Math.Round(UphillTotalClimb, 0)) + " m";
             lblElevationDifference.Text = "Max Elevation Difference: " + Convert.ToString(Math.Round(ElevationDifference, 0)) + " m";
             lblMaxDownSlope.Text = "Max Downhill Slope: " + Convert.ToString(Math.Round(MaxDownhillSlope, 2));
-            
-            
-            
+            #endregion
         }
             
         //Button controls for interacting with the map
         private void btnDrawTrail_Click(object sender, EventArgs e)
         {
-            //delete any shapefile currently on map
-            //code to draw a shapefile goes here.
-            //this will require more stuff
-            /*
-             * use pixel to coordinate conversion to find coordinates
-             * create a list of click events
-             * use a draw function to draw the lines using list of coordinates
-             * use double click or right click for user to be done (maybe both)
-             */
+            //button control no longer registers with the control button :(
         }
 
         private void btnAddLayer_Click(object sender, EventArgs e)
@@ -392,6 +384,7 @@ namespace TrailAnalyzer2K15
              * in or draw a trail and import a raster for analysis.
              */
 
+            #region TryCatchDeletePreviousSampleData
             // Delete Previous Layers if already there, using a try-catch reference
             try
             {
@@ -402,19 +395,21 @@ namespace TrailAnalyzer2K15
             {
                 // Do Nothing
             }
+            #endregion
 
+            #region AddNewSampleData
             // Load in the sample data, background data first
-            // 1) Load in raster first
-            
+            // 1) Load in raster first           
             MyRasterLayer = mapMain.Layers.Add(Raster.Open("..\\data\\Sample_Easier\\ned_easier\\prj.adf"));
             MyRasterLayer.LegendText = "NED10_Easier_Raster";
             mapMain.ZoomToMaxExtent();
             // 2) Load in shapefile after, so that it is seen above the raster in the map and legend
             MySampleLine = mapMain.Layers.Add(Shapefile.Open("..\\data\\Sample_Easier\\SampleTrail_Easier.shp"));
             MySampleLine.LegendText = "SampleTrail_Easier";
-            
             // End Analysis of sample data, Add data to Plot
-            
+            #endregion
+
+            #region AnalyzeAndZedGraph
             // GraphPane object holds one or more Curve objects (or plots)
             GraphPane myPane = zedGraphElevationPlot.GraphPane;
 
@@ -427,7 +422,6 @@ namespace TrailAnalyzer2K15
             
             // Here we will need to do a sample analysis of the data
             AnalyzeTrailHardness(MyRasterLayer, MySampleLine);
-
             // End of Adding Data to plot
 
             // Change the title, x-axis, and y-axis text for the easier sample data
@@ -440,6 +434,7 @@ namespace TrailAnalyzer2K15
             zedGraphElevationPlot.AxisChange();
             zedGraphElevationPlot.Invalidate();
             zedGraphElevationPlot.Refresh();
+            #endregion
 
             // Show the graph now by changing the tab index from 0 (Map) to 1 (Graph)
             tabControl1.SelectedIndex = 1;
@@ -557,6 +552,7 @@ namespace TrailAnalyzer2K15
              * in or draw a trail and import a raster for analysis.
              */
 
+            #region TryCatchDeletePreviousSampleData
             // Delete Previous Layers if already there, using a try-catch reference
             try
             {
@@ -567,7 +563,9 @@ namespace TrailAnalyzer2K15
             {
                 // Do Nothing
             }
+            #endregion
 
+            #region AddNewSampleData
             // Load in the sample data, background data first
             // 1) Load in raster first
             MyRasterLayer = mapMain.Layers.Add(Raster.Open("..\\data\\Sample_Moderate\\ned_moderate\\prj.adf"));
@@ -576,9 +574,10 @@ namespace TrailAnalyzer2K15
             // 2) Load in shapefile after, so that it is seen above the raster in the map and legend
             MySampleLine = mapMain.Layers.Add(Shapefile.Open("..\\data\\Sample_Moderate\\SampleTrail_Moderate.shp"));
             MySampleLine.LegendText = "SampleTrail_Moderate";
-
             // End Analysis of sample data, Add data to Plot
+            #endregion
 
+            #region AnalyzeAndZedGraph
             // This is to remove all plots
             zedGraphElevationPlot.GraphPane.CurveList.Clear();
 
@@ -600,6 +599,7 @@ namespace TrailAnalyzer2K15
             zedGraphElevationPlot.Invalidate();
             zedGraphElevationPlot.Refresh();
             lblTitle.Text = "Moderate Trail";
+            #endregion
 
             // Show the graph now by changing the tab index from 0 (Map) to 1 (Graph)
             tabControl1.SelectedIndex = 1;
@@ -613,6 +613,7 @@ namespace TrailAnalyzer2K15
              * in or draw a trail and import a raster for analysis.
              */
 
+            #region TryCatchPreviousSampleData
             // Delete Previous Layers if already there, using a try-catch reference
             try
             {
@@ -623,7 +624,9 @@ namespace TrailAnalyzer2K15
             {
                 // Do Nothing
             }
+            #endregion
 
+            #region AddNewSampleData
             // Load in the sample data, background data first
             // 1) Load in raster first
             MyRasterLayer = mapMain.Layers.Add(Raster.Open("..\\data\\Sample_Expert\\ned_expert\\prj.adf"));
@@ -632,9 +635,10 @@ namespace TrailAnalyzer2K15
             // 2) Load in shapefile after, so that it is seen above the raster in the map and legend
             MySampleLine = mapMain.Layers.Add(Shapefile.Open("..\\data\\Sample_Expert\\SampleTrail_Expert.shp"));
             MySampleLine.LegendText = "SampleTrail_Expert";
-
             // End Analysis of sample data, Add data to Plot
+            #endregion
 
+            #region AnalyzeAndZedGraph
             // This is to remove all plots
             zedGraphElevationPlot.GraphPane.CurveList.Clear();
 
@@ -656,6 +660,7 @@ namespace TrailAnalyzer2K15
             zedGraphElevationPlot.Invalidate();
             zedGraphElevationPlot.Refresh();
             lblTitle.Text = "Expert Trail";
+            #endregion
 
             // Show the graph now by changing the tab index from 0 (Map) to 1 (Graph)
             tabControl1.SelectedIndex = 1;
@@ -669,18 +674,20 @@ namespace TrailAnalyzer2K15
              * in or draw a trail and import a raster for analysis.
              */
 
+            #region TryCatchPreviousSampleData
             // Delete Previous Layers if already there, using a try-catch reference
             try
             {
                 mapMain.Layers.Remove(MyRasterLayer);
                 mapMain.Layers.Remove(MySampleLine);
             }
-
             catch
             {
                 // Do Nothing
             }
+            #endregion
 
+            #region AddNewSampleData
             // Load in the sample data, background data first
             // 1) Load in raster first
             MyRasterLayer = mapMain.Layers.Add(Raster.Open("..\\data\\Sample_Extreme\\ned_extreme\\prj.adf"));
@@ -689,9 +696,10 @@ namespace TrailAnalyzer2K15
             // 2) Load in shapefile after, so that it is seen above the raster in the map and legend
             MySampleLine = mapMain.Layers.Add(Shapefile.Open("..\\data\\Sample_Extreme\\SampleTrail_Extreme.shp"));
             MySampleLine.LegendText = "SampleTrail_Extreme";
-
             // End Analysis of sample data, Add data to Plot
+            #endregion
 
+            #region AnalyzeAndZedGraph
             // This is to remove all plots
             zedGraphElevationPlot.GraphPane.CurveList.Clear();
 
@@ -712,6 +720,7 @@ namespace TrailAnalyzer2K15
             zedGraphElevationPlot.AxisChange();
             zedGraphElevationPlot.Invalidate();
             zedGraphElevationPlot.Refresh();
+            #endregion
 
             // Show the graph now by changing the tab index from 0 (Map) to 1 (Graph)
             tabControl1.SelectedIndex = 1;
