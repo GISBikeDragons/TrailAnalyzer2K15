@@ -347,8 +347,19 @@ namespace TrailAnalyzer2K15
 
         private void btnAddLayer_Click(object sender, EventArgs e)
         {
-            //delete any shapefile currently on map
-            mapMain.AddLayer();
+            #region TryCatchDeletePreviousData
+            // Delete Previous Layers if already there, using a try-catch reference
+            try
+            {
+                mapMain.Layers.Remove(MySampleLine);
+            }
+            catch
+            {
+                // Do Nothing
+            }
+            #endregion
+            MySampleLine = mapMain.AddFeatureLayer();
+            MySampleLine.LegendText = Microsoft.VisualBasic.Interaction.InputBox("What is your trail's name?", "Add and Name Trail", MySampleLine.LegendText);
         }
 
         private void btnZoomIn_Click(object sender, EventArgs e)
@@ -728,29 +739,11 @@ namespace TrailAnalyzer2K15
 
         private void btnGraph_Click(object sender, EventArgs e)
         {
-            // Delete Previous Layers if already there, using a try-catch reference
-            try
-            {
-                mapMain.Layers.Remove(MyRasterLayer);
-                mapMain.Layers.Remove(MySampleLine);
-            }
-
-            catch
-            {
-                // Do Nothing
-            }
-
-            // Load in the sample data, background data first
-            // 1) Load in raster first
-            MyRasterLayer = mapMain.Layers.Add(Raster.Open("..\\data\\Sample_Extreme\\ned_extreme\\prj.adf"));
-            MyRasterLayer.LegendText = "NED10_Extreme_Raster";
+            
+            //Make users see their whole trail and raster
             mapMain.ZoomToMaxExtent();
-            // 2) Load in shapefile after, so that it is seen above the raster in the map and legend
-            MySampleLine = mapMain.Layers.Add(Shapefile.Open("..\\data\\Sample_Extreme\\SampleTrail_Extreme.shp"));
-            MySampleLine.LegendText = "SampleTrail_Extreme";
 
-            // End Analysis of sample data, Add data to Plot
-
+            #region AnalyzeAndZedGraph
             // This is to remove all plots
             zedGraphElevationPlot.GraphPane.CurveList.Clear();
 
@@ -762,19 +755,37 @@ namespace TrailAnalyzer2K15
             // GraphPane object holds one or more Curve objects (or plots)
             GraphPane myPane = zedGraphElevationPlot.GraphPane;
 
-            // Change the title, x-axis, and y-axis text for the Extreme sample data
-            myPane.Title = "Sample: Extreme Trail";
+            // Change the title, x-axis, and y-axis text for the Expert sample data
+            myPane.Title = MySampleLine.LegendText;
             myPane.XAxis.Title = "Total Distance [m]";
             myPane.YAxis.Title = "Elevation [m]";
-            lblTitle.Text = "Extreme Trail";
 
             // Refreshing the plot
             zedGraphElevationPlot.AxisChange();
             zedGraphElevationPlot.Invalidate();
             zedGraphElevationPlot.Refresh();
-
+            lblTitle.Text = MySampleLine.LegendText;
+            #endregion
+  
             // Show the graph now by changing the tab index from 0 (Map) to 1 (Graph)
             tabControl1.SelectedIndex = 1;
+        }
+
+        private void btnAddRaster_Click(object sender, EventArgs e)
+        {
+            #region TryCatchDeletePreviousData
+            // Delete Previous Layers if already there, using a try-catch reference
+            try
+            {
+                mapMain.Layers.Remove(MyRasterLayer);                
+            }
+            catch
+            {
+                // Do Nothing
+            }
+            #endregion
+            MyRasterLayer = mapMain.AddRasterLayer();
+            MyRasterLayer.LegendText = Microsoft.VisualBasic.Interaction.InputBox("What would you like to call your Raster/DEM/NED?", "Add and Name Raster/DEM/NED", MyRasterLayer.LegendText);
         }
     }
 }

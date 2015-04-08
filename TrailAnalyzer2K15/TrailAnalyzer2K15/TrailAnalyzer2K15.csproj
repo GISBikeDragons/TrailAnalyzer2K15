@@ -83,6 +83,7 @@
     <Reference Include="DotSpatial.Topology">
       <HintPath>S:\CE 594R GIS Programming\Project 3\DotSpatial DLL\DotSpatial.Topology.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
