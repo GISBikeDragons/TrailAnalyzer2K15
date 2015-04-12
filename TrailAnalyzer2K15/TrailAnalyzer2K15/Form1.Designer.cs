@@ -37,6 +37,7 @@
             this.manageLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sptInterface_Map = new System.Windows.Forms.SplitContainer();
             this.sptButtons_Legend = new System.Windows.Forms.SplitContainer();
+            this.btnAddRaster = new System.Windows.Forms.Button();
             this.grpboxSampleData = new System.Windows.Forms.GroupBox();
             this.btnSampleModerate = new System.Windows.Forms.Button();
             this.btnSampleEasier = new System.Windows.Forms.Button();
@@ -77,7 +78,6 @@
             this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnAddRaster = new System.Windows.Forms.Button();
             this.menLayoutMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sptInterface_Map)).BeginInit();
             this.sptInterface_Map.Panel1.SuspendLayout();
@@ -194,6 +194,17 @@
             this.sptButtons_Legend.SplitterDistance = 225;
             this.sptButtons_Legend.TabIndex = 0;
             // 
+            // btnAddRaster
+            // 
+            this.btnAddRaster.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.btnAddRaster.Location = new System.Drawing.Point(84, 9);
+            this.btnAddRaster.Name = "btnAddRaster";
+            this.btnAddRaster.Size = new System.Drawing.Size(67, 63);
+            this.btnAddRaster.TabIndex = 8;
+            this.btnAddRaster.Text = "Add Raster";
+            this.btnAddRaster.UseVisualStyleBackColor = false;
+            this.btnAddRaster.Click += new System.EventHandler(this.btnAddRaster_Click);
+            // 
             // grpboxSampleData
             // 
             this.grpboxSampleData.Controls.Add(this.btnSampleModerate);
@@ -254,32 +265,35 @@
             // 
             // btnGraph
             // 
+            this.btnGraph.BackColor = System.Drawing.Color.Plum;
             this.btnGraph.Location = new System.Drawing.Point(11, 78);
             this.btnGraph.Name = "btnGraph";
-            this.btnGraph.Size = new System.Drawing.Size(69, 23);
+            this.btnGraph.Size = new System.Drawing.Size(140, 23);
             this.btnGraph.TabIndex = 2;
-            this.btnGraph.Text = "Graph Trail";
-            this.btnGraph.UseVisualStyleBackColor = true;
+            this.btnGraph.Text = "Graph and Analyze";
+            this.btnGraph.UseVisualStyleBackColor = false;
             this.btnGraph.Click += new System.EventHandler(this.btnGraph_Click);
             // 
             // btnDrawTrail
             // 
+            this.btnDrawTrail.BackColor = System.Drawing.Color.Gold;
             this.btnDrawTrail.Location = new System.Drawing.Point(11, 49);
             this.btnDrawTrail.Name = "btnDrawTrail";
-            this.btnDrawTrail.Size = new System.Drawing.Size(69, 23);
+            this.btnDrawTrail.Size = new System.Drawing.Size(67, 23);
             this.btnDrawTrail.TabIndex = 1;
             this.btnDrawTrail.Text = "Draw Trail";
-            this.btnDrawTrail.UseVisualStyleBackColor = true;
+            this.btnDrawTrail.UseVisualStyleBackColor = false;
             this.btnDrawTrail.Click += new System.EventHandler(this.btnDrawTrail_Click_1);
             // 
             // btnAddLayer
             // 
-            this.btnAddLayer.Location = new System.Drawing.Point(11, 8);
+            this.btnAddLayer.BackColor = System.Drawing.Color.Gold;
+            this.btnAddLayer.Location = new System.Drawing.Point(11, 9);
             this.btnAddLayer.Name = "btnAddLayer";
             this.btnAddLayer.Size = new System.Drawing.Size(67, 35);
             this.btnAddLayer.TabIndex = 0;
             this.btnAddLayer.Text = "Add Shapefile";
-            this.btnAddLayer.UseVisualStyleBackColor = true;
+            this.btnAddLayer.UseVisualStyleBackColor = false;
             this.btnAddLayer.Click += new System.EventHandler(this.btnAddLayer_Click);
             // 
             // lgdMapLegend
@@ -639,16 +653,6 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Visible = false;
-            // 
-            // btnAddRaster
-            // 
-            this.btnAddRaster.Location = new System.Drawing.Point(84, 9);
-            this.btnAddRaster.Name = "btnAddRaster";
-            this.btnAddRaster.Size = new System.Drawing.Size(67, 34);
-            this.btnAddRaster.TabIndex = 8;
-            this.btnAddRaster.Text = "Add Raster";
-            this.btnAddRaster.UseVisualStyleBackColor = true;
-            this.btnAddRaster.Click += new System.EventHandler(this.btnAddRaster_Click);
             // 
             // frmBikeAnalyzer2K15
             // 
