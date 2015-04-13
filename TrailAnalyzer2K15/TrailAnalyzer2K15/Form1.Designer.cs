@@ -73,9 +73,6 @@
             this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.backgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manageLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menLayoutMenuStrip = new DotSpatial.Controls.LayoutMenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this.sptInterface_Map)).BeginInit();
             this.sptInterface_Map.Panel1.SuspendLayout();
             this.sptInterface_Map.Panel2.SuspendLayout();
@@ -101,7 +98,6 @@
             this.spatialDockManager1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).BeginInit();
             this.spatialStatusStrip1.SuspendLayout();
-            this.menLayoutMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // sptInterface_Map
@@ -119,7 +115,7 @@
             // sptInterface_Map.Panel2
             // 
             this.sptInterface_Map.Panel2.Controls.Add(this.tabControl1);
-            this.sptInterface_Map.Size = new System.Drawing.Size(783, 510);
+            this.sptInterface_Map.Size = new System.Drawing.Size(783, 534);
             this.sptInterface_Map.SplitterDistance = 171;
             this.sptInterface_Map.TabIndex = 1;
             // 
@@ -141,8 +137,8 @@
             // sptButtons_Legend.Panel2
             // 
             this.sptButtons_Legend.Panel2.Controls.Add(this.lgdMapLegend);
-            this.sptButtons_Legend.Size = new System.Drawing.Size(171, 510);
-            this.sptButtons_Legend.SplitterDistance = 207;
+            this.sptButtons_Legend.Size = new System.Drawing.Size(171, 534);
+            this.sptButtons_Legend.SplitterDistance = 216;
             this.sptButtons_Legend.TabIndex = 0;
             // 
             // grpboxSampleData
@@ -206,7 +202,7 @@
             // lgdMapLegend
             // 
             this.lgdMapLegend.BackColor = System.Drawing.Color.White;
-            this.lgdMapLegend.ControlRectangle = new System.Drawing.Rectangle(0, 0, 171, 299);
+            this.lgdMapLegend.ControlRectangle = new System.Drawing.Rectangle(0, 0, 171, 314);
             this.lgdMapLegend.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lgdMapLegend.DocumentRectangle = new System.Drawing.Rectangle(0, 0, 187, 428);
             this.lgdMapLegend.HorizontalScrollEnabled = true;
@@ -219,7 +215,7 @@
             this.lgdMapLegend.ResetOnResize = false;
             this.lgdMapLegend.SelectionFontColor = System.Drawing.Color.Black;
             this.lgdMapLegend.SelectionHighlight = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(238)))), ((int)(((byte)(252)))));
-            this.lgdMapLegend.Size = new System.Drawing.Size(171, 299);
+            this.lgdMapLegend.Size = new System.Drawing.Size(171, 314);
             this.lgdMapLegend.TabIndex = 0;
             this.lgdMapLegend.Text = "Map Legend";
             this.lgdMapLegend.VerticalScrollEnabled = true;
@@ -233,8 +229,9 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(608, 510);
+            this.tabControl1.Size = new System.Drawing.Size(608, 534);
             this.tabControl1.TabIndex = 2;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPageMap
             // 
@@ -246,7 +243,7 @@
             this.tabPageMap.Location = new System.Drawing.Point(4, 4);
             this.tabPageMap.Name = "tabPageMap";
             this.tabPageMap.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMap.Size = new System.Drawing.Size(600, 484);
+            this.tabPageMap.Size = new System.Drawing.Size(600, 508);
             this.tabPageMap.TabIndex = 0;
             this.tabPageMap.Text = "Map";
             this.tabPageMap.UseVisualStyleBackColor = true;
@@ -310,7 +307,7 @@
             this.mapMain.ProjectionModeReproject = DotSpatial.Controls.ActionMode.Prompt;
             this.mapMain.RedrawLayersWhileResizing = false;
             this.mapMain.SelectionEnabled = true;
-            this.mapMain.Size = new System.Drawing.Size(594, 478);
+            this.mapMain.Size = new System.Drawing.Size(594, 502);
             this.mapMain.TabIndex = 10;
             this.mapMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapMain_MouseClick);
             this.mapMain.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.mapMain_MouseDoubleClick);
@@ -505,10 +502,10 @@
             this.tabMain.Controls.Add(this.tabGraph);
             this.tabMain.Controls.Add(this.tabTables);
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabMain.Location = new System.Drawing.Point(0, 24);
+            this.tabMain.Location = new System.Drawing.Point(0, 0);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(797, 542);
+            this.tabMain.Size = new System.Drawing.Size(797, 566);
             this.tabMain.TabIndex = 2;
             // 
             // tabMap
@@ -518,7 +515,7 @@
             this.tabMap.Location = new System.Drawing.Point(4, 4);
             this.tabMap.Name = "tabMap";
             this.tabMap.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMap.Size = new System.Drawing.Size(789, 516);
+            this.tabMap.Size = new System.Drawing.Size(789, 540);
             this.tabMap.TabIndex = 0;
             this.tabMap.Text = "Map";
             // 
@@ -579,9 +576,9 @@
             // spatialDockManager1
             // 
             this.spatialDockManager1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spatialDockManager1.Location = new System.Drawing.Point(0, 24);
+            this.spatialDockManager1.Location = new System.Drawing.Point(0, 0);
             this.spatialDockManager1.Name = "spatialDockManager1";
-            this.spatialDockManager1.Size = new System.Drawing.Size(797, 542);
+            this.spatialDockManager1.Size = new System.Drawing.Size(797, 566);
             this.spatialDockManager1.SplitterDistance = 264;
             this.spatialDockManager1.TabControl1 = null;
             this.spatialDockManager1.TabControl2 = null;
@@ -619,31 +616,6 @@
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Visible = false;
             // 
-            // backgroundToolStripMenuItem
-            // 
-            this.backgroundToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.manageLayerToolStripMenuItem});
-            this.backgroundToolStripMenuItem.Name = "backgroundToolStripMenuItem";
-            this.backgroundToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
-            this.backgroundToolStripMenuItem.Text = "Background";
-            // 
-            // manageLayerToolStripMenuItem
-            // 
-            this.manageLayerToolStripMenuItem.Name = "manageLayerToolStripMenuItem";
-            this.manageLayerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.manageLayerToolStripMenuItem.Text = "Manage Layer";
-            // 
-            // menLayoutMenuStrip
-            // 
-            this.menLayoutMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.backgroundToolStripMenuItem});
-            this.menLayoutMenuStrip.LayoutControl = null;
-            this.menLayoutMenuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menLayoutMenuStrip.Name = "menLayoutMenuStrip";
-            this.menLayoutMenuStrip.Size = new System.Drawing.Size(797, 24);
-            this.menLayoutMenuStrip.TabIndex = 0;
-            this.menLayoutMenuStrip.Text = "layoutMenuStrip1";
-            // 
             // frmBikeAnalyzer2K15
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -652,9 +624,7 @@
             this.Controls.Add(this.spatialStatusStrip1);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.spatialDockManager1);
-            this.Controls.Add(this.menLayoutMenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menLayoutMenuStrip;
             this.Name = "frmBikeAnalyzer2K15";
             this.Text = "Trail Analyzer 2K15";
             this.Load += new System.EventHandler(this.frmBikeAnalyzer2K15_Load);
@@ -686,8 +656,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).EndInit();
             this.spatialStatusStrip1.ResumeLayout(false);
             this.spatialStatusStrip1.PerformLayout();
-            this.menLayoutMenuStrip.ResumeLayout(false);
-            this.menLayoutMenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -739,9 +707,6 @@
         private System.Windows.Forms.GroupBox grpboxSampleData;
         private System.Windows.Forms.Button btnAddRaster;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ToolStripMenuItem backgroundToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem manageLayerToolStripMenuItem;
-        private DotSpatial.Controls.LayoutMenuStrip menLayoutMenuStrip;
     }
 }
 

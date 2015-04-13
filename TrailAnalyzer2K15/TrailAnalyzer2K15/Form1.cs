@@ -422,9 +422,25 @@ namespace TrailAnalyzer2K15
 
         private void btnDrawTrail_Click_1(object sender, EventArgs e)
         {
-            amDigitizing = true;
-            tabControl1.SelectedIndex = 0;
-            mapMain.Cursor = Cursors.Cross;
+
+            if (MyRasterLayer != null)
+            {              
+                amDigitizing = true;
+                tabControl1.SelectedIndex = 0;
+                mapMain.Cursor = Cursors.Cross;
+                toolStripStatusLabel1.Visible = true;
+                toolStripStatusLabel1.Text = "Click on map to draw line. Double-click to finish.";
+
+                if (MySampleLine != null)
+                {
+                    mapMain.Layers.Remove(MySampleLine);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Import a DEM before drawing a line");
+            }
+
 
         }
 
@@ -523,7 +539,7 @@ namespace TrailAnalyzer2K15
 
                 mapMain.Invalidate();
                 mapMain.Cursor = Cursors.Arrow;
-
+                toolStripStatusLabel1.Visible = false;
             }
         }
 
@@ -606,7 +622,7 @@ namespace TrailAnalyzer2K15
         }
         #endregion
 
-        #region Sample Data Button
+        #region Sample Data Buttons
         private void btnSampleEasier_Click(object sender, EventArgs e)
         {
             /* 
@@ -857,15 +873,20 @@ namespace TrailAnalyzer2K15
         #endregion
 
 
-
-
-
-
         #endregion
 
         private void frmBikeAnalyzer2K15_SizeChanged(object sender, EventArgs e)
         {
             resizeForm();
+        }
+
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 0)
+            {
+                toolStripStatusLabel1.Visible = false;
+            }
         }
     }
 }
