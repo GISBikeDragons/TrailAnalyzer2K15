@@ -29,23 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBikeAnalyzer2K15));
-            this.menLayoutMenuStrip = new DotSpatial.Controls.LayoutMenuStrip();
-            this.layersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.backgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manageLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sptInterface_Map = new System.Windows.Forms.SplitContainer();
             this.sptButtons_Legend = new System.Windows.Forms.SplitContainer();
-            this.btnAddRaster = new System.Windows.Forms.Button();
             this.grpboxSampleData = new System.Windows.Forms.GroupBox();
             this.btnSampleModerate = new System.Windows.Forms.Button();
             this.btnSampleEasier = new System.Windows.Forms.Button();
             this.btnSampleExtreme = new System.Windows.Forms.Button();
             this.btnSampleExpert = new System.Windows.Forms.Button();
-            this.btnGraph = new System.Windows.Forms.Button();
-            this.btnDrawTrail = new System.Windows.Forms.Button();
-            this.btnAddLayer = new System.Windows.Forms.Button();
             this.lgdMapLegend = new DotSpatial.Controls.Legend();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageMap = new System.Windows.Forms.TabPage();
@@ -67,8 +57,13 @@
             this.lblMaxDownSlope = new System.Windows.Forms.Label();
             this.lblDistanceDown = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.btnAddRaster = new System.Windows.Forms.Button();
+            this.btnGraph = new System.Windows.Forms.Button();
+            this.btnDrawTrail = new System.Windows.Forms.Button();
+            this.btnAddLayer = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabMap = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tabGraph = new System.Windows.Forms.TabPage();
             this.zedGraph = new ZedGraph.ZedGraphControl();
             this.tabTables = new System.Windows.Forms.TabPage();
@@ -78,7 +73,9 @@
             this.spatialStatusStrip1 = new DotSpatial.Controls.SpatialStatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.menLayoutMenuStrip.SuspendLayout();
+            this.backgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menLayoutMenuStrip = new DotSpatial.Controls.LayoutMenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this.sptInterface_Map)).BeginInit();
             this.sptInterface_Map.Panel1.SuspendLayout();
             this.sptInterface_Map.Panel2.SuspendLayout();
@@ -98,59 +95,14 @@
             this.groupBox1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabMap.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.tabGraph.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spatialDockManager1)).BeginInit();
             this.spatialDockManager1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).BeginInit();
             this.spatialStatusStrip1.SuspendLayout();
+            this.menLayoutMenuStrip.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // menLayoutMenuStrip
-            // 
-            this.menLayoutMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.layersToolStripMenuItem,
-            this.backgroundToolStripMenuItem});
-            this.menLayoutMenuStrip.LayoutControl = null;
-            this.menLayoutMenuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menLayoutMenuStrip.Name = "menLayoutMenuStrip";
-            this.menLayoutMenuStrip.Size = new System.Drawing.Size(755, 24);
-            this.menLayoutMenuStrip.TabIndex = 0;
-            this.menLayoutMenuStrip.Text = "layoutMenuStrip1";
-            // 
-            // layersToolStripMenuItem
-            // 
-            this.layersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addLayerToolStripMenuItem,
-            this.deleteLayerToolStripMenuItem});
-            this.layersToolStripMenuItem.Name = "layersToolStripMenuItem";
-            this.layersToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.layersToolStripMenuItem.Text = "Layers";
-            // 
-            // addLayerToolStripMenuItem
-            // 
-            this.addLayerToolStripMenuItem.Name = "addLayerToolStripMenuItem";
-            this.addLayerToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.addLayerToolStripMenuItem.Text = "Add Layer";
-            // 
-            // deleteLayerToolStripMenuItem
-            // 
-            this.deleteLayerToolStripMenuItem.Name = "deleteLayerToolStripMenuItem";
-            this.deleteLayerToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.deleteLayerToolStripMenuItem.Text = "Delete Layer";
-            // 
-            // backgroundToolStripMenuItem
-            // 
-            this.backgroundToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.manageLayerToolStripMenuItem});
-            this.backgroundToolStripMenuItem.Name = "backgroundToolStripMenuItem";
-            this.backgroundToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
-            this.backgroundToolStripMenuItem.Text = "Background";
-            // 
-            // manageLayerToolStripMenuItem
-            // 
-            this.manageLayerToolStripMenuItem.Name = "manageLayerToolStripMenuItem";
-            this.manageLayerToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.manageLayerToolStripMenuItem.Text = "Manage Layer";
             // 
             // sptInterface_Map
             // 
@@ -162,12 +114,13 @@
             // sptInterface_Map.Panel1
             // 
             this.sptInterface_Map.Panel1.Controls.Add(this.sptButtons_Legend);
+            this.sptInterface_Map.Panel1MinSize = 171;
             // 
             // sptInterface_Map.Panel2
             // 
             this.sptInterface_Map.Panel2.Controls.Add(this.tabControl1);
-            this.sptInterface_Map.Size = new System.Drawing.Size(741, 493);
-            this.sptInterface_Map.SplitterDistance = 162;
+            this.sptInterface_Map.Size = new System.Drawing.Size(783, 510);
+            this.sptInterface_Map.SplitterDistance = 171;
             this.sptInterface_Map.TabIndex = 1;
             // 
             // sptButtons_Legend
@@ -180,30 +133,17 @@
             // sptButtons_Legend.Panel1
             // 
             this.sptButtons_Legend.Panel1.BackColor = System.Drawing.Color.White;
-            this.sptButtons_Legend.Panel1.Controls.Add(this.btnAddRaster);
+            this.sptButtons_Legend.Panel1.Controls.Add(this.groupBox2);
             this.sptButtons_Legend.Panel1.Controls.Add(this.grpboxSampleData);
-            this.sptButtons_Legend.Panel1.Controls.Add(this.btnGraph);
-            this.sptButtons_Legend.Panel1.Controls.Add(this.btnDrawTrail);
-            this.sptButtons_Legend.Panel1.Controls.Add(this.btnAddLayer);
             this.sptButtons_Legend.Panel1.Margin = new System.Windows.Forms.Padding(1);
+            this.sptButtons_Legend.Panel1MinSize = 207;
             // 
             // sptButtons_Legend.Panel2
             // 
             this.sptButtons_Legend.Panel2.Controls.Add(this.lgdMapLegend);
-            this.sptButtons_Legend.Size = new System.Drawing.Size(162, 493);
-            this.sptButtons_Legend.SplitterDistance = 225;
+            this.sptButtons_Legend.Size = new System.Drawing.Size(171, 510);
+            this.sptButtons_Legend.SplitterDistance = 207;
             this.sptButtons_Legend.TabIndex = 0;
-            // 
-            // btnAddRaster
-            // 
-            this.btnAddRaster.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.btnAddRaster.Location = new System.Drawing.Point(84, 9);
-            this.btnAddRaster.Name = "btnAddRaster";
-            this.btnAddRaster.Size = new System.Drawing.Size(67, 63);
-            this.btnAddRaster.TabIndex = 8;
-            this.btnAddRaster.Text = "Add Raster";
-            this.btnAddRaster.UseVisualStyleBackColor = false;
-            this.btnAddRaster.Click += new System.EventHandler(this.btnAddRaster_Click);
             // 
             // grpboxSampleData
             // 
@@ -211,20 +151,20 @@
             this.grpboxSampleData.Controls.Add(this.btnSampleEasier);
             this.grpboxSampleData.Controls.Add(this.btnSampleExtreme);
             this.grpboxSampleData.Controls.Add(this.btnSampleExpert);
-            this.grpboxSampleData.Location = new System.Drawing.Point(5, 106);
+            this.grpboxSampleData.Location = new System.Drawing.Point(5, 117);
             this.grpboxSampleData.Name = "grpboxSampleData";
-            this.grpboxSampleData.Size = new System.Drawing.Size(154, 108);
+            this.grpboxSampleData.Size = new System.Drawing.Size(154, 81);
             this.grpboxSampleData.TabIndex = 7;
             this.grpboxSampleData.TabStop = false;
             this.grpboxSampleData.Text = "Sample Trail Data";
             // 
             // btnSampleModerate
             // 
-            this.btnSampleModerate.BackColor = System.Drawing.Color.Blue;
+            this.btnSampleModerate.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnSampleModerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnSampleModerate.Location = new System.Drawing.Point(79, 22);
+            this.btnSampleModerate.Location = new System.Drawing.Point(79, 19);
             this.btnSampleModerate.Name = "btnSampleModerate";
-            this.btnSampleModerate.Size = new System.Drawing.Size(67, 35);
+            this.btnSampleModerate.Size = new System.Drawing.Size(67, 23);
             this.btnSampleModerate.TabIndex = 4;
             this.btnSampleModerate.Text = "Moderate";
             this.btnSampleModerate.UseVisualStyleBackColor = false;
@@ -233,9 +173,9 @@
             // btnSampleEasier
             // 
             this.btnSampleEasier.BackColor = System.Drawing.Color.Lime;
-            this.btnSampleEasier.Location = new System.Drawing.Point(6, 22);
+            this.btnSampleEasier.Location = new System.Drawing.Point(6, 19);
             this.btnSampleEasier.Name = "btnSampleEasier";
-            this.btnSampleEasier.Size = new System.Drawing.Size(67, 35);
+            this.btnSampleEasier.Size = new System.Drawing.Size(67, 23);
             this.btnSampleEasier.TabIndex = 3;
             this.btnSampleEasier.Text = "Easy";
             this.btnSampleEasier.UseVisualStyleBackColor = false;
@@ -244,9 +184,9 @@
             // btnSampleExtreme
             // 
             this.btnSampleExtreme.BackColor = System.Drawing.Color.Red;
-            this.btnSampleExtreme.Location = new System.Drawing.Point(79, 64);
+            this.btnSampleExtreme.Location = new System.Drawing.Point(79, 48);
             this.btnSampleExtreme.Name = "btnSampleExtreme";
-            this.btnSampleExtreme.Size = new System.Drawing.Size(67, 35);
+            this.btnSampleExtreme.Size = new System.Drawing.Size(67, 23);
             this.btnSampleExtreme.TabIndex = 6;
             this.btnSampleExtreme.Text = "Extreme";
             this.btnSampleExtreme.UseVisualStyleBackColor = false;
@@ -255,51 +195,18 @@
             // btnSampleExpert
             // 
             this.btnSampleExpert.BackColor = System.Drawing.Color.Yellow;
-            this.btnSampleExpert.Location = new System.Drawing.Point(6, 64);
+            this.btnSampleExpert.Location = new System.Drawing.Point(6, 48);
             this.btnSampleExpert.Name = "btnSampleExpert";
-            this.btnSampleExpert.Size = new System.Drawing.Size(67, 35);
+            this.btnSampleExpert.Size = new System.Drawing.Size(67, 23);
             this.btnSampleExpert.TabIndex = 5;
             this.btnSampleExpert.Text = "Expert";
             this.btnSampleExpert.UseVisualStyleBackColor = false;
             this.btnSampleExpert.Click += new System.EventHandler(this.btnSampleExpert_Click);
             // 
-            // btnGraph
-            // 
-            this.btnGraph.BackColor = System.Drawing.Color.Plum;
-            this.btnGraph.Location = new System.Drawing.Point(11, 78);
-            this.btnGraph.Name = "btnGraph";
-            this.btnGraph.Size = new System.Drawing.Size(140, 23);
-            this.btnGraph.TabIndex = 2;
-            this.btnGraph.Text = "Graph and Analyze";
-            this.btnGraph.UseVisualStyleBackColor = false;
-            this.btnGraph.Click += new System.EventHandler(this.btnGraph_Click);
-            // 
-            // btnDrawTrail
-            // 
-            this.btnDrawTrail.BackColor = System.Drawing.Color.Gold;
-            this.btnDrawTrail.Location = new System.Drawing.Point(11, 49);
-            this.btnDrawTrail.Name = "btnDrawTrail";
-            this.btnDrawTrail.Size = new System.Drawing.Size(67, 23);
-            this.btnDrawTrail.TabIndex = 1;
-            this.btnDrawTrail.Text = "Draw Trail";
-            this.btnDrawTrail.UseVisualStyleBackColor = false;
-            this.btnDrawTrail.Click += new System.EventHandler(this.btnDrawTrail_Click_1);
-            // 
-            // btnAddLayer
-            // 
-            this.btnAddLayer.BackColor = System.Drawing.Color.Gold;
-            this.btnAddLayer.Location = new System.Drawing.Point(11, 9);
-            this.btnAddLayer.Name = "btnAddLayer";
-            this.btnAddLayer.Size = new System.Drawing.Size(67, 35);
-            this.btnAddLayer.TabIndex = 0;
-            this.btnAddLayer.Text = "Add Shapefile";
-            this.btnAddLayer.UseVisualStyleBackColor = false;
-            this.btnAddLayer.Click += new System.EventHandler(this.btnAddLayer_Click);
-            // 
             // lgdMapLegend
             // 
             this.lgdMapLegend.BackColor = System.Drawing.Color.White;
-            this.lgdMapLegend.ControlRectangle = new System.Drawing.Rectangle(0, 0, 162, 264);
+            this.lgdMapLegend.ControlRectangle = new System.Drawing.Rectangle(0, 0, 171, 299);
             this.lgdMapLegend.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lgdMapLegend.DocumentRectangle = new System.Drawing.Rectangle(0, 0, 187, 428);
             this.lgdMapLegend.HorizontalScrollEnabled = true;
@@ -312,7 +219,7 @@
             this.lgdMapLegend.ResetOnResize = false;
             this.lgdMapLegend.SelectionFontColor = System.Drawing.Color.Black;
             this.lgdMapLegend.SelectionHighlight = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(238)))), ((int)(((byte)(252)))));
-            this.lgdMapLegend.Size = new System.Drawing.Size(162, 264);
+            this.lgdMapLegend.Size = new System.Drawing.Size(171, 299);
             this.lgdMapLegend.TabIndex = 0;
             this.lgdMapLegend.Text = "Map Legend";
             this.lgdMapLegend.VerticalScrollEnabled = true;
@@ -326,7 +233,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(575, 493);
+            this.tabControl1.Size = new System.Drawing.Size(608, 510);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPageMap
@@ -339,7 +246,7 @@
             this.tabPageMap.Location = new System.Drawing.Point(4, 4);
             this.tabPageMap.Name = "tabPageMap";
             this.tabPageMap.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMap.Size = new System.Drawing.Size(567, 467);
+            this.tabPageMap.Size = new System.Drawing.Size(600, 484);
             this.tabPageMap.TabIndex = 0;
             this.tabPageMap.Text = "Map";
             this.tabPageMap.UseVisualStyleBackColor = true;
@@ -403,7 +310,7 @@
             this.mapMain.ProjectionModeReproject = DotSpatial.Controls.ActionMode.Prompt;
             this.mapMain.RedrawLayersWhileResizing = false;
             this.mapMain.SelectionEnabled = true;
-            this.mapMain.Size = new System.Drawing.Size(561, 461);
+            this.mapMain.Size = new System.Drawing.Size(594, 478);
             this.mapMain.TabIndex = 10;
             this.mapMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapMain_MouseClick);
             this.mapMain.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.mapMain_MouseDoubleClick);
@@ -414,7 +321,7 @@
             this.tabPageGraph.Location = new System.Drawing.Point(4, 4);
             this.tabPageGraph.Name = "tabPageGraph";
             this.tabPageGraph.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageGraph.Size = new System.Drawing.Size(567, 467);
+            this.tabPageGraph.Size = new System.Drawing.Size(600, 484);
             this.tabPageGraph.TabIndex = 1;
             this.tabPageGraph.Text = "Graph";
             this.tabPageGraph.UseVisualStyleBackColor = true;
@@ -433,8 +340,8 @@
             // sptGraphDialog.Panel2
             // 
             this.sptGraphDialog.Panel2.Controls.Add(this.groupBox1);
-            this.sptGraphDialog.Size = new System.Drawing.Size(561, 461);
-            this.sptGraphDialog.SplitterDistance = 248;
+            this.sptGraphDialog.Size = new System.Drawing.Size(594, 478);
+            this.sptGraphDialog.SplitterDistance = 257;
             this.sptGraphDialog.TabIndex = 1;
             // 
             // zedGraphElevationPlot
@@ -445,7 +352,7 @@
             this.zedGraphElevationPlot.Location = new System.Drawing.Point(0, 0);
             this.zedGraphElevationPlot.Name = "zedGraphElevationPlot";
             this.zedGraphElevationPlot.PointValueFormat = "G";
-            this.zedGraphElevationPlot.Size = new System.Drawing.Size(561, 248);
+            this.zedGraphElevationPlot.Size = new System.Drawing.Size(594, 257);
             this.zedGraphElevationPlot.TabIndex = 0;
             // 
             // groupBox1
@@ -547,6 +454,50 @@
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Name of the Trail";
             // 
+            // btnAddRaster
+            // 
+            this.btnAddRaster.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.btnAddRaster.Location = new System.Drawing.Point(81, 18);
+            this.btnAddRaster.Name = "btnAddRaster";
+            this.btnAddRaster.Size = new System.Drawing.Size(67, 52);
+            this.btnAddRaster.TabIndex = 8;
+            this.btnAddRaster.Text = "Import Raster";
+            this.btnAddRaster.UseVisualStyleBackColor = false;
+            this.btnAddRaster.Click += new System.EventHandler(this.btnAddRaster_Click);
+            // 
+            // btnGraph
+            // 
+            this.btnGraph.BackColor = System.Drawing.Color.Plum;
+            this.btnGraph.Location = new System.Drawing.Point(6, 76);
+            this.btnGraph.Name = "btnGraph";
+            this.btnGraph.Size = new System.Drawing.Size(140, 23);
+            this.btnGraph.TabIndex = 2;
+            this.btnGraph.Text = "Graph and Analyze";
+            this.btnGraph.UseVisualStyleBackColor = false;
+            this.btnGraph.Click += new System.EventHandler(this.btnGraph_Click);
+            // 
+            // btnDrawTrail
+            // 
+            this.btnDrawTrail.BackColor = System.Drawing.Color.Gold;
+            this.btnDrawTrail.Location = new System.Drawing.Point(8, 47);
+            this.btnDrawTrail.Name = "btnDrawTrail";
+            this.btnDrawTrail.Size = new System.Drawing.Size(67, 23);
+            this.btnDrawTrail.TabIndex = 1;
+            this.btnDrawTrail.Text = "Draw Trail";
+            this.btnDrawTrail.UseVisualStyleBackColor = false;
+            this.btnDrawTrail.Click += new System.EventHandler(this.btnDrawTrail_Click_1);
+            // 
+            // btnAddLayer
+            // 
+            this.btnAddLayer.BackColor = System.Drawing.Color.Gold;
+            this.btnAddLayer.Location = new System.Drawing.Point(8, 18);
+            this.btnAddLayer.Name = "btnAddLayer";
+            this.btnAddLayer.Size = new System.Drawing.Size(67, 23);
+            this.btnAddLayer.TabIndex = 0;
+            this.btnAddLayer.Text = "Import Trail";
+            this.btnAddLayer.UseVisualStyleBackColor = false;
+            this.btnAddLayer.Click += new System.EventHandler(this.btnAddLayer_Click);
+            // 
             // tabMain
             // 
             this.tabMain.Alignment = System.Windows.Forms.TabAlignment.Bottom;
@@ -557,7 +508,7 @@
             this.tabMain.Location = new System.Drawing.Point(0, 24);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(755, 525);
+            this.tabMain.Size = new System.Drawing.Size(797, 542);
             this.tabMain.TabIndex = 2;
             // 
             // tabMap
@@ -567,9 +518,23 @@
             this.tabMap.Location = new System.Drawing.Point(4, 4);
             this.tabMap.Name = "tabMap";
             this.tabMap.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMap.Size = new System.Drawing.Size(747, 499);
+            this.tabMap.Size = new System.Drawing.Size(789, 516);
             this.tabMap.TabIndex = 0;
             this.tabMap.Text = "Map";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.Color.White;
+            this.groupBox2.Controls.Add(this.btnGraph);
+            this.groupBox2.Controls.Add(this.btnDrawTrail);
+            this.groupBox2.Controls.Add(this.btnAddLayer);
+            this.groupBox2.Controls.Add(this.btnAddRaster);
+            this.groupBox2.Location = new System.Drawing.Point(8, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(154, 107);
+            this.groupBox2.TabIndex = 9;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Custom Trail";
             // 
             // tabGraph
             // 
@@ -577,7 +542,7 @@
             this.tabGraph.Location = new System.Drawing.Point(4, 4);
             this.tabGraph.Name = "tabGraph";
             this.tabGraph.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGraph.Size = new System.Drawing.Size(747, 499);
+            this.tabGraph.Size = new System.Drawing.Size(789, 516);
             this.tabGraph.TabIndex = 1;
             this.tabGraph.Text = "Graphs";
             this.tabGraph.UseVisualStyleBackColor = true;
@@ -589,7 +554,7 @@
             this.zedGraph.Location = new System.Drawing.Point(3, 3);
             this.zedGraph.Name = "zedGraph";
             this.zedGraph.PointValueFormat = "G";
-            this.zedGraph.Size = new System.Drawing.Size(741, 493);
+            this.zedGraph.Size = new System.Drawing.Size(783, 510);
             this.zedGraph.TabIndex = 0;
             // 
             // tabTables
@@ -597,7 +562,7 @@
             this.tabTables.BackColor = System.Drawing.Color.Gainsboro;
             this.tabTables.Location = new System.Drawing.Point(4, 4);
             this.tabTables.Name = "tabTables";
-            this.tabTables.Size = new System.Drawing.Size(747, 499);
+            this.tabTables.Size = new System.Drawing.Size(789, 516);
             this.tabTables.TabIndex = 2;
             this.tabTables.Text = "Tables";
             // 
@@ -616,8 +581,8 @@
             this.spatialDockManager1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spatialDockManager1.Location = new System.Drawing.Point(0, 24);
             this.spatialDockManager1.Name = "spatialDockManager1";
-            this.spatialDockManager1.Size = new System.Drawing.Size(755, 525);
-            this.spatialDockManager1.SplitterDistance = 251;
+            this.spatialDockManager1.Size = new System.Drawing.Size(797, 542);
+            this.spatialDockManager1.SplitterDistance = 264;
             this.spatialDockManager1.TabControl1 = null;
             this.spatialDockManager1.TabControl2 = null;
             this.spatialDockManager1.TabIndex = 3;
@@ -633,11 +598,11 @@
             this.spatialStatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripProgressBar1,
             this.toolStripStatusLabel1});
-            this.spatialStatusStrip1.Location = new System.Drawing.Point(0, 527);
+            this.spatialStatusStrip1.Location = new System.Drawing.Point(0, 544);
             this.spatialStatusStrip1.Name = "spatialStatusStrip1";
             this.spatialStatusStrip1.ProgressBar = this.toolStripProgressBar1;
             this.spatialStatusStrip1.ProgressLabel = this.toolStripStatusLabel1;
-            this.spatialStatusStrip1.Size = new System.Drawing.Size(755, 22);
+            this.spatialStatusStrip1.Size = new System.Drawing.Size(797, 22);
             this.spatialStatusStrip1.TabIndex = 4;
             this.spatialStatusStrip1.Text = "spatialStatusStrip1";
             // 
@@ -654,11 +619,36 @@
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Visible = false;
             // 
+            // backgroundToolStripMenuItem
+            // 
+            this.backgroundToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manageLayerToolStripMenuItem});
+            this.backgroundToolStripMenuItem.Name = "backgroundToolStripMenuItem";
+            this.backgroundToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.backgroundToolStripMenuItem.Text = "Background";
+            // 
+            // manageLayerToolStripMenuItem
+            // 
+            this.manageLayerToolStripMenuItem.Name = "manageLayerToolStripMenuItem";
+            this.manageLayerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.manageLayerToolStripMenuItem.Text = "Manage Layer";
+            // 
+            // menLayoutMenuStrip
+            // 
+            this.menLayoutMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.backgroundToolStripMenuItem});
+            this.menLayoutMenuStrip.LayoutControl = null;
+            this.menLayoutMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menLayoutMenuStrip.Name = "menLayoutMenuStrip";
+            this.menLayoutMenuStrip.Size = new System.Drawing.Size(797, 24);
+            this.menLayoutMenuStrip.TabIndex = 0;
+            this.menLayoutMenuStrip.Text = "layoutMenuStrip1";
+            // 
             // frmBikeAnalyzer2K15
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 549);
+            this.ClientSize = new System.Drawing.Size(797, 566);
             this.Controls.Add(this.spatialStatusStrip1);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.spatialDockManager1);
@@ -668,8 +658,7 @@
             this.Name = "frmBikeAnalyzer2K15";
             this.Text = "Trail Analyzer 2K15";
             this.Load += new System.EventHandler(this.frmBikeAnalyzer2K15_Load);
-            this.menLayoutMenuStrip.ResumeLayout(false);
-            this.menLayoutMenuStrip.PerformLayout();
+            this.SizeChanged += new System.EventHandler(this.frmBikeAnalyzer2K15_SizeChanged);
             this.sptInterface_Map.Panel1.ResumeLayout(false);
             this.sptInterface_Map.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sptInterface_Map)).EndInit();
@@ -690,12 +679,15 @@
             this.groupBox1.PerformLayout();
             this.tabMain.ResumeLayout(false);
             this.tabMap.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.tabGraph.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spatialDockManager1)).EndInit();
             this.spatialDockManager1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spatialHeaderControl1)).EndInit();
             this.spatialStatusStrip1.ResumeLayout(false);
             this.spatialStatusStrip1.PerformLayout();
+            this.menLayoutMenuStrip.ResumeLayout(false);
+            this.menLayoutMenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -703,7 +695,6 @@
 
         #endregion
 
-        private DotSpatial.Controls.LayoutMenuStrip menLayoutMenuStrip;
         private System.Windows.Forms.SplitContainer sptInterface_Map;
         private System.Windows.Forms.SplitContainer sptButtons_Legend;
         private System.Windows.Forms.Button btnDrawTrail;
@@ -714,11 +705,6 @@
         private System.Windows.Forms.Button btnZoomOut;
         private System.Windows.Forms.Button btnZoomIn;
         private DotSpatial.Controls.Map mapMain;
-        private System.Windows.Forms.ToolStripMenuItem layersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addLayerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteLayerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem backgroundToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem manageLayerToolStripMenuItem;
         private System.Windows.Forms.TabControl tabMain;
         private System.Windows.Forms.TabPage tabMap;
         private System.Windows.Forms.TabPage tabGraph;
@@ -752,6 +738,10 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox grpboxSampleData;
         private System.Windows.Forms.Button btnAddRaster;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ToolStripMenuItem backgroundToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageLayerToolStripMenuItem;
+        private DotSpatial.Controls.LayoutMenuStrip menLayoutMenuStrip;
     }
 }
 
