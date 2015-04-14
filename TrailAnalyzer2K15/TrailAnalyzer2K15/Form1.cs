@@ -39,7 +39,7 @@ namespace TrailAnalyzer2K15
             appManager1.LoadExtensions();
         }
 
-        //program for analyzing the trail, at least trying
+        //program for analyzing the trail, at least trying ########## MAIN FUNCTION #########
         private void AnalyzeTrailHardness(IMapRasterLayer InputRas, IMapFeatureLayer InputShp)
         {
 
@@ -379,9 +379,6 @@ namespace TrailAnalyzer2K15
             }
 
         }
-
-       
-
 
         private void frmBikeAnalyzer2K15_Load(object sender, EventArgs e)
         {
@@ -879,7 +876,6 @@ namespace TrailAnalyzer2K15
         {
             resizeForm();
         }
-
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
