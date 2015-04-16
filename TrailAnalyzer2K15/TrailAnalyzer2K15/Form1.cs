@@ -129,14 +129,14 @@ namespace TrailAnalyzer2K15
                 toolStripProgressBar1.Visible = true;
                 toolStripStatusLabel1.Visible = true;
                 toolStripStatusLabel1.Text = "Analyzing Trail: " + InputShp.LegendText;
-                toolStripProgressBar1.Maximum = NumPointsCoordinates;
+                toolStripProgressBar1.Maximum = NumPointsCoordinates + 1000;
                 toolStripProgressBar1.Value = 0;
                 toolStripProgressBar1.Step = 1;
 
                 // Stepping through all the vertices in the polyline
                 for (int j = 0; j < NumPointsCoordinates; j++)
                 {
-                    toolStripProgressBar1.Value++;
+                    //toolStripProgressBar1.Value++;
                     // For the first loop, only set some parameters up
                     if (j == 0)
                     {
@@ -384,6 +384,7 @@ namespace TrailAnalyzer2K15
         {
             resizeForm();
         }
+
         private void resizeForm()
         {
             sptInterface_Map.SplitterDistance = 171;
@@ -620,13 +621,87 @@ namespace TrailAnalyzer2K15
         #endregion
 
         #region Sample Data Buttons
-        private void btnSampleEasier_Click(object sender, EventArgs e)
+
+
+        private void sampleData(string Title, string LabelTitle, string legendtextLine, string legendtextRaster, string filepathRaster, string filepathLine)
         {
-            /* 
-             * The purpose of this button is to show the user how a real trail
+            #region TryCatchDeletePreviousSampleData
+            // Delete Previous Layers if already there, using a try-catch reference
+            try
+            {
+                mapMain.Layers.Remove(MyRasterLayer);
+                mapMain.Layers.Remove(MySampleLine);
+            }
+            catch
+            {
+                // Do Nothing
+            }
+            #endregion
+
+            //toolStripProgressBar1.Value = 0;
+            #region AddNewSampleData
+            // Load in the sample data, background data first
+            // 1) Load in raster first           
+            MyRasterLayer = mapMain.Layers.Add(Raster.Open(filepathRaster));
+            MyRasterLayer.LegendText = legendtextRaster;
+            mapMain.ZoomToMaxExtent();
+            // 2) Load in shapefile after, so that it is seen above the raster in the map and legend
+            MySampleLine = mapMain.Layers.Add(Shapefile.Open(filepathLine));
+            MySampleLine.LegendText = legendtextLine;
+            // End Analysis of sample data, Add data to Plot
+            #endregion
+
+            #region AnalyzeAndZedGraph
+            GraphPane myPane = zedGraphElevationPlot.GraphPane;
+
+            // This is to remove all plots
+            try
+            {
+                myPane.CurveList.Clear();
+            }
+            catch { }
+        
+            // Here we will need to do a sample analysis of the data
+            AnalyzeTrailHardness(MyRasterLayer, MySampleLine);
+            // End of Adding Data to plot
+
+            // Change the title, x-axis, and y-axis text for the easier sample data
+            myPane.Title = Title;
+            myPane.XAxis.Title = "Total Distance [m]";
+            myPane.YAxis.Title = "Elevation [m]";
+            lblTitle.Text = LabelTitle;
+
+            // Refreshing the plot
+            zedGraphElevationPlot.AxisChange();
+            zedGraphElevationPlot.Invalidate();
+            zedGraphElevationPlot.Refresh();
+            #endregion
+
+            // Show the graph now by changing the tab index from 0 (Map) to 1 (Graph)
+
+            tabControl1.SelectedIndex = 1;
+        }
+
+        private void btnSampleEasier_Click(object sender, EventArgs e)
+        {            
+            /* The purpose of this button is to show the user how a real trail
              * rated as "Easier" would look like for when they decide to load
              * in or draw a trail and import a raster for analysis.
              */
+ 
+            string Title = "Sample: Easier Trail";
+            string legendtextLine = "SampleTrail_Easier";
+            string legendtextRaster = "NED10_Easier_Raster";
+            string LabelTitle = "Easier Trail";
+            string filepathRaster = "..\\data\\Sample_Easier\\ned_easier\\prj.adf";
+            string filepathLine = "..\\data\\Sample_Easier\\SampleTrail_Easier.shp";
+
+            sampleData(Title, LabelTitle, legendtextLine, legendtextRaster, filepathRaster, filepathLine);
+
+            #region old code
+            /* 
+
+             
 
             #region TryCatchDeletePreviousSampleData
             // Delete Previous Layers if already there, using a try-catch reference
@@ -683,17 +758,29 @@ namespace TrailAnalyzer2K15
             // Show the graph now by changing the tab index from 0 (Map) to 1 (Graph)
 
             tabControl1.SelectedIndex = 1;
-
+            */
+            #endregion
         }
 
         private void btnSampleModerate_Click(object sender, EventArgs e)
-        {
+        {     
             /* 
              * The purpose of this button is to show the user how a real trail
              * rated as "Moderate" would look like for when they decide to load
              * in or draw a trail and import a raster for analysis.
              */
 
+            string Title = "Sample: Moderate Trail";
+            string legendtextLine = "SampleTrail_Moderate";
+            string legendtextRaster = "NED10_Moderate_Raster";
+            string LabelTitle = "Moderate Trail";
+            string filepathRaster = "..\\data\\Sample_Moderate\\ned_moderate\\prj.adf";
+            string filepathLine = "..\\data\\Sample_Moderate\\SampleTrail_Moderate.shp";
+
+            sampleData(Title, LabelTitle, legendtextLine, legendtextRaster, filepathRaster, filepathLine);
+
+            #region old code
+            /*
             #region TryCatchDeletePreviousSampleData
             // Delete Previous Layers if already there, using a try-catch reference
             try
@@ -745,6 +832,8 @@ namespace TrailAnalyzer2K15
 
             // Show the graph now by changing the tab index from 0 (Map) to 1 (Graph)
             tabControl1.SelectedIndex = 1;
+             */
+            #endregion
         }
 
         private void btnSampleExpert_Click(object sender, EventArgs e)
@@ -755,6 +844,17 @@ namespace TrailAnalyzer2K15
              * in or draw a trail and import a raster for analysis.
              */
 
+            string Title = "Sample: Expert Trail";
+            string legendtextLine = "SampleTrail_Expert";
+            string legendtextRaster = "NED10_Expert_Raster";
+            string LabelTitle = "Expert Trail";
+            string filepathRaster = "..\\data\\Sample_Expert\\ned_expert\\prj.adf";
+            string filepathLine = "..\\data\\Sample_Expert\\SampleTrail_Expert.shp";
+
+            sampleData(Title, LabelTitle, legendtextLine, legendtextRaster, filepathRaster, filepathLine);
+
+            #region old code
+            /*
             #region TryCatchPreviousSampleData
             // Delete Previous Layers if already there, using a try-catch reference
             try
@@ -805,7 +905,9 @@ namespace TrailAnalyzer2K15
             #endregion
 
             // Show the graph now by changing the tab index from 0 (Map) to 1 (Graph)
-            tabControl1.SelectedIndex = 1;
+            tabControl1.SelectedIndex = 1;\
+             */
+            #endregion
         }
 
         private void btnSampleExtreme_Click(object sender, EventArgs e)
@@ -816,6 +918,18 @@ namespace TrailAnalyzer2K15
              * in or draw a trail and import a raster for analysis.
              */
 
+            string Title = "Sample: Extreme Trail";
+            string legendtextLine = "SampleTrail_Extreme";
+            string legendtextRaster = "NED10_Extreme_Raster";
+            string LabelTitle = "Extreme Trail";
+            string filepathRaster = "..\\data\\Sample_Extreme\\ned_extreme\\prj.adf";
+            string filepathLine = "..\\data\\Sample_Extreme\\SampleTrail_Extreme.shp";
+
+            sampleData(Title, LabelTitle, legendtextLine, legendtextRaster, filepathRaster, filepathLine);
+
+
+            #region old code
+            /*
             #region TryCatchPreviousSampleData
             // Delete Previous Layers if already there, using a try-catch reference
             try
@@ -866,9 +980,12 @@ namespace TrailAnalyzer2K15
 
             // Show the graph now by changing the tab index from 0 (Map) to 1 (Graph)
             tabControl1.SelectedIndex = 1;
+             */
+            #endregion
         }
-        #endregion
 
+
+        #endregion
 
         #endregion
 
